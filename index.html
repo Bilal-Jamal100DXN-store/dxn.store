@@ -415,26 +415,36 @@
 
 
 /* =================================================== */
-/* تنسيقات الموبايل المخصصة وأزرار التواصل (منسقة ومدمجة) */
+/* تنسيقات الموبايل المخصصة وأزرار التواصل (النسخة المصلحة) */
 /* =================================================== */
 
 /* 1. التنسيقات المعتمدة على كلاس الأجهزة الذكية برمجياً */
 .mobile-device .fixed-cart-top { padding: 14px 24px; font-size: 17px; }
 .mobile-device .fixed-cart-top .cart-badge { font-size: 14px; }
 .mobile-device .copy-card-btn { padding: 14px 28px; font-size: 17px; }
-.mobile-device .btn-category { border: 3px solid #2c5e3b; padding: 12px 22px; font-size: 18px; font-weight: 900; text-shadow: 0.5px 0 0 #2c5e3b; }
+.mobile-device .btn-category { border: 2px solid #2c5e3b; padding: 10px 16px; font-size: 15px; font-weight: 500 !important; text-shadow: none !important; }
 .mobile-device .floating-contact-bar { width: 92% !important; max-width: 440px !important; padding: 10px 14px !important; bottom: 15px !important; gap: 8px !important; } 
 .mobile-device .floating-btn { padding: 12px 6px !important; font-size: 15px !important; font-weight: bold !important; gap: 4px !important; } 
 .mobile-device .checkout-form input, .mobile-device .checkout-form textarea { padding: 14px; font-size: 16px; }
 .mobile-device .btn-send { padding: 15px 12px; font-size: 17px; }
 .mobile-device .contact-item { padding: 11px 18px; font-size: 17px; }
+.mobile-device .product-card h3, .mobile-device .product-title { font-weight: 400 !important; }
+.mobile-device .btn-add-to-cart { display: block !important; width: 100% !important; padding: 6px 4px !important; font-size: 13px !important; font-weight: 500 !important; }
 
 /* 2. التنسيقات المعتمدة على حجم شاشة الموبايل (Media Query) */
 @media (max-width: 768px) {
     .fixed-cart-top { padding: 14px 24px; font-size: 17px; }
     .fixed-cart-top .cart-badge { font-size: 14px; }
     .copy-card-btn { padding: 14px 28px; font-size: 17px; }
-    .btn-category { border: 3px solid #2c5e3b; padding: 12px 22px; font-size: 18px; font-weight: 900; text-shadow: 0.5px 0 0 #2c5e3b; }
+    
+    /* 🌟 إصلاح قوائم الأقسام: إلغاء البولد 900 وإلغاء الظل لتصبح ناعمة جداً */
+    .btn-category { 
+        border: 2px solid #2c5e3b !important; 
+        padding: 10px 16px !important; 
+        font-size: 15px !important; 
+        font-weight: 500 !important; 
+        text-shadow: none !important; 
+    }
     
     /* عرض منتجين بجانب بعض بدقة وفخامة */
     #products-container {
@@ -444,21 +454,25 @@
         padding: 10px;
     }
 
-    /* إزالة الخط العريض (البولد) وتنعيم أسماء المنتجات للموبايل */
+    /* عناوين وأسماء المنتجات: إلغاء البولد تماماً وجعله خطاً انسيابياً */
     #products-container .product-card h3,
     #products-container .product-title,
-    #products-container .product-name {
-        font-weight: 500 !important;
+    #products-container .product-name,
+    .product-card h3 {
+        font-weight: 400 !important;
     }
 
-    /* 🌟 تصغير وتنعيم زر أضف للسلة ليطابق حجم أزرار السعر والنقاط تماماً في التلفون */
-    #products-container .btn-add-to-cart {
-        width: 80% !important; /* عرض متناسق داخل الكارت الصغير */
-        padding: 5px 8px !important; /* حشو ناعم يعطيه ارتفاعاً صغيراً كالسعر */
-        font-size: 12px !important; /* نفس حجم خط السعر والنقاط تماماً */
-        font-weight: 500 !important; /* إزالة البولد ليصبح مريحاً للعين ومتناسقاً */
+    /* 🌟 إصلاح زر أضف للسلة: ضمان ظهوره بالكامل بعرض متناسق ونحيف كالسعر تماماً */
+    .btn-add-to-cart {
+        display: block !important; 
+        width: 100% !important; 
+        padding: 6px 4px !important; 
+        font-size: 13px !important; 
+        font-weight: 500 !important; 
         border-radius: 6px !important;
-        margin: 6px auto 2px auto !important;
+        margin: 8px auto 0 auto !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     /* أزرار التواصل والنوافذ للموبايل */
