@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>متجر منتجات DXN</title>
 
   <meta property="og:title" content="متجر DXN للمنتجات العضوية">
   <meta property="og:description" content="الوكيل المعتمد لمنتجات DXN الصحية - بإدارة كابتن بلال. تسوق أفضل المنتجات الطبيعية والصحية لباب بيتك.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400">
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متجر منتجات DXN</title>
 
   <script>
     if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768) {
@@ -660,6 +660,9 @@
           
           let productPV = Number(product.pv || product.points || 0);
 
+          // حماية اسم المنتج عند تمريره داخل دالة الضغط لتجنب أخطاء الـ JavaScript
+          let safeName = name.replace(/'/g, "\\'");
+
           let imageSection = imgUrl 
             ? `<img class="product-img" src="${imgUrl}" alt="${name}" style="cursor: zoom-in;" onclick="zoomImage('${imgUrl}')" onerror="handleImgError(this)">`
             : `<div class="product-img-fallback">🌿</div>`;
@@ -672,10 +675,13 @@
                 ${description ? `<p class="product-benefits">${description}</p>` : ''}
               </div>
               <div>
-              <div class="product-price">${formattedPrice} د.ع</div>
-               <div class="product-pv" style="font-size: 14px; color: #114232; font-weight: bold; margin-top: 4px; background: #fff8db; padding: 6px; border-radius: 4px; display: inline-block; text-align:center; width:calc(100% - 12px);">⭐ النقاط: ${productPV} PV</div>
-                ر
-                </div>
+                <div class="product-price">${formattedPrice} د.ع</div>
+                <div class="product-pv" style="font-size: 14px; color: #114232; font-weight: bold; margin-top: 4px; background: #fff8db; padding: 6px; border-radius: 4px; display: inline-block; text-align:center; width:calc(100% - 12px);">⭐ النقاط: ${productPV} PV</div>
+                
+                <button onclick="addToCart('${safeName}', ${rawPrice}, ${productPV})" class="btn-add-to-cart" style="width: 100%; margin-top: 10px; background-color: #114232; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+                  🛒 إضافة للسلة
+                </button>
+              </div>
             </div>
           `;
           container.appendChild(card);
