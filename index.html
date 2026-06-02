@@ -176,12 +176,13 @@
       background: white;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-      overflow: hidden;
+      /* تم إلغاء overflow hidden لمنع إخفاء الأزرار */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.3s;
       border: 1px solid #eef2f0;
+      height: auto !important; /* يضمن تمدد الكارت ليظهر الزر بالكامل */
     }
     .product-card:hover {
       transform: translateY(-5px);
@@ -236,6 +237,27 @@
       padding: 8px;
       border-radius: 6px;
       margin-top: auto;
+    }
+    
+    /* 🌟 أضفنا زر السلة الافتراضي للكمبيوتر واللابتوب لكي يظهر بقوة */
+    .btn-add-to-cart {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      background-color: #2c5e3b;
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      margin: 10px auto 5px auto;
+      width: 90%;
+      text-align: center;
+    }
+    .btn-add-to-cart:hover {
+      background-color: #21462c;
     }
     
     /* شريط أزرار التواصل الافتراضي للحاسبة */
@@ -415,7 +437,7 @@
 
 
 /* =================================================== */
-/* تنسيقات الموبايل المخصصة وأزرار التواصل (النسخة المصلحة) */
+/* ثانياً وثالثاً: تنسيقات الموبايل المخصصة وأزرار التواصل */
 /* =================================================== */
 
 /* 1. التنسيقات المعتمدة على كلاس الأجهزة الذكية برمجياً */
@@ -428,7 +450,7 @@
 .mobile-device .checkout-form input, .mobile-device .checkout-form textarea { padding: 14px; font-size: 16px; }
 .mobile-device .btn-send { padding: 15px 12px; font-size: 17px; }
 .mobile-device .contact-item { padding: 11px 18px; font-size: 17px; }
-.mobile-device .product-card h3, .mobile-device .product-title { font-weight: 400 !important; }
+.mobile-device .product-card h3, .mobile-device .product-title, .mobile-device .product-name { font-weight: 500 !important; }
 .mobile-device .btn-add-to-cart { display: block !important; width: 100% !important; padding: 6px 4px !important; font-size: 13px !important; font-weight: 500 !important; }
 
 /* 2. التنسيقات المعتمدة على حجم شاشة الموبايل (Media Query) */
@@ -437,8 +459,8 @@
     .fixed-cart-top .cart-badge { font-size: 14px; }
     .copy-card-btn { padding: 14px 28px; font-size: 17px; }
     
-    /* 🌟 إصلاح قوائم الأقسام: إلغاء البولد 900 وإلغاء الظل لتصبح ناعمة جداً */
-    .btn-category { 
+    /* 🌟 تنعيم أزرار قوائم الأقسام للموبايل تماماً وإلغاء البولد والظل */
+    .btn-category, .category-btn, .category-tab { 
         border: 2px solid #2c5e3b !important; 
         padding: 10px 16px !important; 
         font-size: 15px !important; 
@@ -454,25 +476,22 @@
         padding: 10px;
     }
 
-    /* عناوين وأسماء المنتجات: إلغاء البولد تماماً وجعله خطاً انسيابياً */
-    #products-container .product-card h3,
-    #products-container .product-title,
-    #products-container .product-name,
-    .product-card h3 {
-        font-weight: 400 !important;
+    /* 🌟 تنعيم أسماء وعناوين المنتجات تماماً للموبايل لإلغاء البولد */
+    .product-name, .product-card h3, .product-title {
+        font-weight: 500 !important;
     }
 
-    /* 🌟 إصلاح زر أضف للسلة: ضمان ظهوره بالكامل بعرض متناسق ونحيف كالسعر تماماً */
+    /* 🌟 زر أضف للسلة للموبايل: يظهر بشكل كامل، ناعم، وبنفس حجم خط السعر والنقاط تماماً */
     .btn-add-to-cart {
         display: block !important; 
+        visibility: visible !important;
+        opacity: 1 !important;
         width: 100% !important; 
         padding: 6px 4px !important; 
         font-size: 13px !important; 
         font-weight: 500 !important; 
         border-radius: 6px !important;
         margin: 8px auto 0 auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
     }
 
     /* أزرار التواصل والنوافذ للموبايل */
@@ -482,7 +501,7 @@
     .btn-send { padding: 15px 12px; font-size: 17px; }
     .contact-item { padding: 11px 18px; font-size: 17px; }
 }
-  </style>
+</style>
 
   <link rel="icon" type="image/jpeg" href="https://i.ibb.co/zWmbNc3R/photo-2026-06-02-08-37-05.jpg">
 <link rel="apple-touch-icon" href="https://i.ibb.co/zWmbNc3R/photo-2026-06-02-08-37-05.jpg">
