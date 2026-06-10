@@ -176,7 +176,10 @@
       transition: transform 0.3s;
       border: 1px solid #eef2f0;
       height: auto !important;
+      border-radius: 14px; /* هذا السطر يسوي حواف الكارت دائرية وناعمة */
+    overflow: hidden;    /* هذا السطر يقص حواف الصورة والأزرار حتى تمشي وية تدويرة الكارت */
     }
+
     .product-card:hover {
       transform: translateY(-5px);
     }
