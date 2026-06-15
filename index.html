@@ -821,7 +821,7 @@
       renderGrid(filtered);
     }
 
-    // 🟢 فتح الصورة المكبرة بنظام pushState المخصص للتطبيقات
+    // 🟢 دالة فتح الصورة المكبرة مع تسجيل الهاش لزر الرجوع
     function zoomImage(url) {
       if(!url) return;
       const modal = document.getElementById('imgModal');
@@ -829,17 +829,17 @@
       if(modal && modalImg) {
         modalImg.src = url;
         modal.style.display = 'flex';
-        history.pushState({ openModal: 'product' }, '');
+        window.location.hash = 'product';
       }
     }
 
-    // 🔴 غلق الصورة يدوياً
+    // 🔴 دالة غلق الصورة وتنظيف الرابط
     function closeZoomImage() {
       const modal = document.getElementById('imgModal');
       if (modal) {
         modal.style.display = 'none';
-        if (history.state && history.state.openModal === 'product') {
-          history.back();
+        if (window.location.hash === '#product') {
+          window.history.back();
         }
       }
     }
@@ -854,51 +854,57 @@
         setTimeout(() => {
           tooltip.style.visibility = "hidden";
           tooltip.style.opacity = "0";
-         }, 2000);
+        }, 2000);
       }).catch(err => {
         console.error('فشلت عملية النسخ: ', err);
       });
     }
 
-    // 🟢 فتح وغلق السلة بنظام pushState المتوافق مع التطبيقات
+    // 🟢 دالة فتح وغلق السلة بنظام الهاش القياسي
     function toggleCartModal() {
       var modal = document.getElementById("cart-modal");
       if (!modal) return;
       if (modal.style.display === "none" || modal.style.display === "") {
         modal.style.display = "flex";
-        history.pushState({ openModal: 'cart' }, '');
+        window.location.hash = 'cart';
       } else {
         modal.style.display = "none";
-        if (history.state && history.state.openModal === 'cart') {
-          history.back();
+        if (window.location.hash === '#cart') {
+          window.history.back();
         }
       }
     }
 
-    // 🟢 فتح وغلق كود التخفيض بنظام pushState المتوافق مع التطبيقات
+    // 🟢 دالة فتح وغلق كود التخفيض بنظام الهاش القياسي
     function toggleMemberModal() {
       var modal = document.getElementById("member-modal");
       if (!modal) return;
       if (modal.style.display === "none" || modal.style.display === "") {
         modal.style.display = "flex";
-        history.pushState({ openModal: 'discount' }, '');
+        window.location.hash = 'discount';
       } else {
         modal.style.display = "none";
-        if (history.state && history.state.openModal === 'discount') {
-          history.back();
+        if (window.location.hash === '#discount') {
+          window.history.back();
         }
       }
     }
 
-    // 🛡️ الحارس العام (popstate) - يلقف ضغطة زر الرجوع مالت الموبايل ويغلق النوافذ فوراً لمنع الخروج من التطبيق
-    window.addEventListener('popstate', function(event) {
+    // 🛡️ الحارس العام الموحد والذكي لمراقبة دقمة الرجوع مالت التلفون
+    window.addEventListener('hashchange', function() {
       var cartModal = document.getElementById("cart-modal");
       var memberModal = document.getElementById("member-modal");
       var imgModal = document.getElementById("imgModal");
 
-      if (cartModal) cartModal.style.display = "none";
-      if (memberModal) memberModal.style.display = "none";
-      if (imgModal) imgModal.style.display = "none";
+      if (window.location.hash !== '#cart' && cartModal) {
+        cartModal.style.display = "none";
+      }
+      if (window.location.hash !== '#discount' && memberModal) {
+        memberModal.style.display = "none";
+      }
+      if (window.location.hash !== '#product' && imgModal) {
+        imgModal.style.display = "none";
+      }
     });
 
     function addToCart(name, price, pv) {
