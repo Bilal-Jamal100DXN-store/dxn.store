@@ -519,6 +519,31 @@
           padding: 16px !important;
         }
     }
+
+/* إجبار واجهة السلة والفورم تظهر باللون الأخضر الطوخ الفخم */
+.checkout-form h4, #cart-modal h4 {
+    background-color: #114232 !important;
+    color: #ffffff !important;
+}
+
+.checkout-form label {
+    color: #114232 !important;
+    font-weight: bold !important;
+}
+
+/* تلوين حواف حقول الإدخال (الاسم، الهاتف، العنوان، المدينة) */
+.checkout-form input[type="text"], 
+.checkout-form input[type="tel"], 
+.checkout-form select, 
+.checkout-form textarea {
+    border: 1px solid #114232 !important;
+}
+
+/* تلوين حواف الفورم بالكامل */
+.checkout-form {
+    border-top: 3px solid #114232 !important;
+}
+
   </style>
 
   <link rel="icon" type="image/jpeg" href="https://i.ibb.co/zWmbNc3R/photo-2026-06-02-08-37-05.jpg">
@@ -685,7 +710,7 @@
 
 
   <script>
-            let allProducts = [];
+    let allProducts = [];
     let cart = []; 
 
     window.onload = function() {
@@ -796,7 +821,7 @@
       renderGrid(filtered);
     }
 
-    // 🟢 دالة فتح الصورة المكبرة مع تسجيل الهاش لزر الرجوع
+    // 🟢 دالة فتح الصورة المكبرة بنظام pushState المتوافق مع دقمة رجوع التلفون داخل التطبيق
     function zoomImage(url) {
       if(!url) return;
       const modal = document.getElementById('imgModal');
@@ -804,17 +829,17 @@
       if(modal && modalImg) {
         modalImg.src = url;
         modal.style.display = 'flex';
-        window.location.hash = 'product';
+        history.pushState({ openModal: 'product' }, '');
       }
     }
 
-    // 🔴 دالة غلق الصورة وتنظيف الرابط
+    // 🔴 دالة غلق الصورة يدوياً
     function closeZoomImage() {
       const modal = document.getElementById('imgModal');
       if (modal) {
         modal.style.display = 'none';
-        if (window.location.hash === '#product') {
-          window.history.back();
+        if (history.state && history.state.openModal === 'product') {
+          history.back();
         }
       }
     }
@@ -835,51 +860,45 @@
       });
     }
 
-    // 🟢 دالة فتح وغلق السلة بنظام الهاش القياسي
+    // 🟢 دالة فتح وغلق السلة بنظام pushState المتوافق مع دقمة رجوع التلفون داخل التطبيق
     function toggleCartModal() {
       var modal = document.getElementById("cart-modal");
       if (!modal) return;
       if (modal.style.display === "none" || modal.style.display === "") {
         modal.style.display = "flex";
-        window.location.hash = 'cart';
+        history.pushState({ openModal: 'cart' }, '');
       } else {
         modal.style.display = "none";
-        if (window.location.hash === '#cart') {
-          window.history.back();
+        if (history.state && history.state.openModal === 'cart') {
+          history.back();
         }
       }
     }
 
-    // 🟢 دالة فتح وغلق كود التخفيض بنظام الهاش القياسي
+    // 🟢 دالة فتح وغلق كود التخفيض بنظام pushState المتوافق مع دقمة رجوع التلفون داخل التطبيق
     function toggleMemberModal() {
       var modal = document.getElementById("member-modal");
       if (!modal) return;
       if (modal.style.display === "none" || modal.style.display === "") {
         modal.style.display = "flex";
-        window.location.hash = 'discount';
+        history.pushState({ openModal: 'discount' }, '');
       } else {
         modal.style.display = "none";
-        if (window.location.hash === '#discount') {
-          window.history.back();
+        if (history.state && history.state.openModal === 'discount') {
+          history.back();
         }
       }
     }
 
-    // 🛡️ الحارس العام الموحد والذكي لمراقبة دقمة الرجوع مالت التلفون (متوافق 100% مع جيت هاب)
-    window.addEventListener('hashchange', function() {
+    // 🛡️ الحارس العام للتطبيق (popstate) - يلقف ضغطة زر الرجوع مالت الموبايل ويغلق أي نافذة مفتوحة فوراً
+    window.addEventListener('popstate', function(event) {
       var cartModal = document.getElementById("cart-modal");
       var memberModal = document.getElementById("member-modal");
       var imgModal = document.getElementById("imgModal");
 
-      if (window.location.hash !== '#cart' && cartModal) {
-        cartModal.style.display = "none";
-      }
-      if (window.location.hash !== '#discount' && memberModal) {
-        memberModal.style.display = "none";
-      }
-      if (window.location.hash !== '#product' && imgModal) {
-        imgModal.style.display = "none";
-      }
+      if (cartModal) cartModal.style.display = "none";
+      if (memberModal) memberModal.style.display = "none";
+      if (imgModal) imgModal.style.display = "none";
     });
 
     function addToCart(name, price, pv) {
@@ -1067,7 +1086,6 @@
         btn.style.color = "#ffffff";      
       }, 2000);
     }
-
 </script>
 
 </body>
