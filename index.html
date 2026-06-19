@@ -576,7 +576,7 @@
     </button>
 </header>
 
-
+  
 <div class="categories">
     <button class="btn-category active" onclick="filterCategory('الكل', this)">الكل</button>
     <button class="btn-category" onclick="filterCategory('مكملات غذائية', this)">مكملات غذائية</button>
@@ -936,7 +936,8 @@
       updateCartUI();
     }
 
-    function updateCartUI() {
+    // أضفنا (updateTimer = true) كقيمة افتراضية لتحديث العداد تلقائياً مع كل تعديل
+function updateCartUI(updateTimer = true) {
       const listContainer = document.getElementById("cart-items-list");
       const totalContainer = document.getElementById("cart-total-price");
       const pvAlertContainer = document.getElementById("smart-pv-alert");
@@ -981,6 +982,15 @@
         listContainer.appendChild(itemRow);
       });
 
+      // حفظ السلة الحالية بالذاكرة فوراً
+      localStorage.setItem('dxn_products_cart', JSON.stringify(cart));
+
+      // 👇 التعديل الجديد: تحديث العداد بـ 14 يوم عند حدوث أي تعديل حقيقي بالسلة 👇
+      if (updateTimer && cart.length > 0) {
+          const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000; // حساب 14 يوم بالملي ثانية
+          localStorage.setItem('cart_expiry_time', Date.now() + FOURTEEN_DAYS_MS);
+      }
+}
       var topLeftCartCount = document.getElementById('cart-count-top');
       if (topLeftCartCount) topLeftCartCount.innerText = totalItems;
 
@@ -1023,6 +1033,11 @@
     }
 
     function sendOrder(platform) {
+
+      // حساب وقت انتهاء السلة بعد أسبوع من الآن (7 أيام * 24 ساعة * 60 دقيقة * 60 ثانية * 1000 ملي ثانية)
+const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+localStorage.setItem('cart_expiry_time', Date.now() + ONE_WEEK_MS);
+      
       var name = document.getElementById("cust-name").value.trim();
       var phone = document.getElementById("cust-phone").value.trim();
       var governorate = document.getElementById("cust-governorate").value;
@@ -1145,6 +1160,30 @@
           if (bottomDownloadSection) bottomDownloadSection.style.display = "none";
       }
   });
+
+  function initCart() {
+    const expiryTime = localStorage.getItem('cart_expiry_time');
+    
+    // إذا عبر وقت الانتهاء الحالي (14 يوم)
+    if (expiryTime && Date.now() > parseInt(expiryTime)) {
+        cart = []; // تفرغ السلة
+        localStorage.removeItem('dxn_products_cart'); // تحذف السلة من الذاكرة
+        localStorage.removeItem('cart_expiry_time'); // تصفر التايمر
+    } else {
+        // إذا ما عبرت الـ 14 يوم، حمل السلة القديمة
+        const savedCart = localStorage.getItem('dxn_products_cart');
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+        }
+    }
+    
+    // مررنا false لمنع تصفير العداد عند مجرد دخول الموقع
+    updateCartUI(false); 
+}
+
+// الـ Listener الأساسي اللي نبهتني عليه يظل بمكانه 👇
+document.addEventListener('DOMContentLoaded', initCart);
+  
 </script>
 
 </body>
