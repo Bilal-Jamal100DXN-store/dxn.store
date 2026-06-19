@@ -706,8 +706,8 @@
         <textarea id="cust-notes" placeholder="هل لديك أي تفاصيل أخرى؟"></textarea>
         
         <div class="submit-buttons-row">
-          <button onclick="sendOrder('whatsapp')" class="btn-send wa-btn">🟢 إرسال عبر الواتساب</button>
-          <button onclick="sendOrder('telegram')" class="btn-send tg-btn">🔵 إرسال عبر التليجرام</button>
+          <button onclick="sendOrder('whatsapp')" class="btn-send wa-btn">🟢 إرسال الطلب عبر الواتساب</button>
+          <button onclick="sendOrder('telegram')" class="btn-send tg-btn">🔵 إرسال الطلب عبر التليجرام</button>
         </div>
       </div>
     </div>
@@ -1034,9 +1034,8 @@ function updateCartUI(updateTimer = true) {
 
     function sendOrder(platform) {
 
-      // حساب وقت انتهاء السلة بعد أسبوع من الآن (7 أيام * 24 ساعة * 60 دقيقة * 60 ثانية * 1000 ملي ثانية)
-const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-localStorage.setItem('cart_expiry_time', Date.now() + ONE_WEEK_MS);
+     const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000;
+      localStorage.setItem('cart_expiry_time', Date.now() + FOURTEEN_DAYS_MS);
       
       var name = document.getElementById("cust-name").value.trim();
       var phone = document.getElementById("cust-phone").value.trim();
@@ -1125,7 +1124,7 @@ localStorage.setItem('cart_expiry_time', Date.now() + ONE_WEEK_MS);
 
       <!-- زر التحميل المباشر المرتبط بقسم الإصدارات (Releases) الناجح -->
       <a href="https://github.com/Bilal-Jamal100DXN-store/dxn.store/releases/download/v1.0/DXN_Store.apk" style="background-color: #000000; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.2s; -webkit-tap-highlight-color: transparent;">
-         📥 تحميل التطبيق
+       تحميل التطبيق للأندرويد
       </a>
 
       <!-- ملاحظة الأمان المطمئنة للزبائن -->
