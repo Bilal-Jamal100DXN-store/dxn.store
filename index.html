@@ -659,27 +659,6 @@ button, .btn, img, nav, i, .menu {
 
     /* تنسيقات نظام المنتجات المفضلة المضافة حديثاً دون تعديل القديم */
     <style>
-      /* الزر العائم أعلى يمين الشاشة - لون حليبي والخط أحمر متوسط الغمق */
-      .floating-wishlist-btn {
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background-color: #fdfbf7 !important; /* لون حليبي كريمي */
-          color: #a61c1c !important; /* لون أحمر متوسط الغمق */
-          border: 1.5px solid rgba(166, 28, 28, 0.4) !important;
-          padding: 10px 16px;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          font-weight: bold;
-          font-size: 14px;
-          border-radius: 25px;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-          cursor: pointer;
-          z-index: 999999; /* لضمان ظهوره فوق كل العناصر والمكونات */
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-      }
 
       .floating-wishlist-btn:active {
           transform: scale(0.95);
@@ -856,17 +835,22 @@ button, .btn, img, nav, i, .menu {
     المنتجات المفضلة (<span id="wishlistCount">0</span>)
 </button>
 
-<!-- النافذة المنبثقة للمنتجات المفضلة (تكون مخفية وتظهر عند الضغط) -->
-<div id="wishlistModal" class="wishlist-modal">
-    <div class="wishlist-modal-content">
-        <div class="wishlist-modal-header">
-            <h3>قائمة المنتجات المفضلة</h3>
-            <button class="close-modal-btn" onclick="toggleWishlistModal()">×</button>
-        </div>
-        <!-- هنا ستظهر المنتجات بنفس كروت الموقع -->
-        <div id="wishlistItemsContainer" class="products-grid">
-            <p class="empty-message">لم تقم بإضافة أي منتج للمفضلة بعد.</p>
-        </div>
+<div id="wishlistModal" class="modal" style="display: none; ...">
+    <div class="modal-content" style="...">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 15px;">
+            
+            <h3 style="margin: 0; color: #114232; font-size: 18px; font-weight: bold;">
+               المنتجات المفضلة (<span id="wishlistCount">0</span>)
+            </h3>
+            
+            <button onclick="toggleWishlistModal()" style="background:none; border:none; color:#c62828; cursor:pointer; padding: 6px; display:flex; align-items:center; justify-content:center; transition: all 0.2s; border-radius:50%;" title="إغلاق القائمة">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            </div>
+
+        <div id="wishlistItemsContainer"></div>
+
     </div>
 </div>
   
@@ -1408,7 +1392,7 @@ button, .btn, img, nav, i, .menu {
       renderGrid(allProducts); // إعادة بناء الجريد لتحديث شكل القلوب ❤️
     }
 
-    // 🌟 دالة تحديث واجهة المفضلة المودال
+   // 🌟 دالة تحديث واجهة المفضلة (مربعات بدون صور + إضافة بدون إغلاق)
     function updateWishlistUI() {
       const wishlistCountSpan = document.getElementById('wishlistCount');
       if (wishlistCountSpan) wishlistCountSpan.innerText = wishlist.length;
@@ -1417,49 +1401,49 @@ button, .btn, img, nav, i, .menu {
       if (!container) return;
 
       if (wishlist.length === 0) {
-        container.innerHTML = '<p class="empty-message">لم تقم بإضافة أي منتج للمفضلة بعد.</p>';
+        container.innerHTML = '<p style="text-align:center; font-size:14px; color:#777; padding:20px; grid-column: 1/-1;">لم تقم بإضافة أي منتج للمفضلة بعد. 🤍</p>';
         return;
       }
 
       container.innerHTML = '';
+      
+      // تفعيل نظام شبكي متناسق للمربعات
+      container.style.display = 'grid';
+      container.style.gridTemplateColumns = 'repeat(auto-fill, minmax(140px, 1fr))';
+      container.style.gap = '12px';
+      container.style.padding = '10px 0';
+
       wishlist.forEach(product => {
         const card = document.createElement('div');
-        card.className = 'product-card';
-
+        
         let name = product.name || 'منتج بدون اسم';
         let rawPrice = Number(product.price);
         let formattedPrice = !isNaN(rawPrice) ? rawPrice.toLocaleString() : 'غير محدد';
-        let imgUrl = (product.img && product.img.trim().startsWith('http')) ? product.img.trim() : '';
         let productPV = Number(product.pv || product.points || 0);
         let safeName = name.replace(/'/g, "\\'");
 
-        let imageSection = imgUrl 
-          ? `<img class="product-img" src="${imgUrl}" alt="${name}">`
-          : `<div class="product-img-fallback">🌿</div>`;
+        // تصميم مربع نظيف وبسيط بدون صورة منتج
+        card.style = "border: 1px solid #e8e8e8; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: right; box-sizing: border-box; min-height: 130px;";
 
         card.innerHTML = `
-          ${imageSection}
-          <div class="product-info">
-            <div>
-              <h3 class="product-name">${name}</h3>
-            </div>
-            <div>
-              <div class="product-price">${formattedPrice} د.ع</div>
-              <div style="display: flex; gap: 5px; margin-top: 8px;">
-                <button onclick="addToCart('${safeName}', ${rawPrice}, ${productPV}); toggleWishlistModal(); toggleCartModal();" class="btn-add-to-cart" style="background-color: #114232; flex: 1; margin: 0; font-size: 12px; padding: 8px;">
-                  🛒 شراء
-                </button>
-                <button onclick="toggleWishlistProduct('${safeName}')" style="background: #ffcdd2; border: none; border-radius: 8px; padding: 0 10px; cursor: pointer; color: #c62828;">
-                  ❌ حذف
-                </button>
-              </div>
-            </div>
+          <div style="flex-grow: 1;">
+            <strong style="color:#114232; font-size:14px; font-weight:600; display:block; line-height:1.4; margin-bottom:4px;">${name}</strong>
+            <span style="font-size:13px; color:#a61c1c; font-weight: 700;">${formattedPrice} د.ع</span>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 10px;">
+            <button onclick="addToCart('${safeName}', ${rawPrice}, ${productPV})" style="background-color: #114232; color: white; border: none; border-radius: 6px; padding: 8px; cursor: pointer; font-size: 12px; font-weight: bold; width: 100%; transition: 0.2s; display:flex; align-items:center; justify-content:center;">
+              🛒 إضافة للسلة
+            </button>
+            <button onclick="toggleWishlistProduct('${safeName}')" style="background-color: #fff5f5; color: #c62828; border: 1px solid #ffcdd2; border-radius: 6px; padding: 6px; cursor: pointer; font-size: 12px; font-weight: 600; width: 100%; transition: 0.2s;">
+              حذف
+            </button>
           </div>
         `;
         container.appendChild(card);
       });
     }
-
+    
     function sendOrder(platform) {
       const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000;
       localStorage.setItem('cart_expiry_time', Date.now() + FOURTEEN_DAYS_MS);
@@ -1590,7 +1574,6 @@ button, .btn, img, nav, i, .menu {
   function initCart() {
     const expiryTime = localStorage.getItem('cart_expiry_time');
     
-    // إذا عبر وقت الانتهاء الحالي (14 يوم)
     if (expiryTime && Date.now() > parseInt(expiryTime)) {
         cart = []; 
         localStorage.removeItem('dxn_products_cart'); 
@@ -1602,7 +1585,13 @@ button, .btn, img, nav, i, .menu {
         }
     }
     
-    // 🟢 هنا تم وضعهم لتشتغل فوراً بدون انتظار تحميل الصور
+    // 🌟 جلب المنتجات المفضلة المخزنة بذاكرة الهاتف للأبد وعرضها فوراً 🌟
+    const savedWishlist = localStorage.getItem('dxn_products_wishlist');
+    if (savedWishlist) {
+        wishlist = JSON.parse(savedWishlist);
+        updateWishlistUI();
+    }
+    
     if (localStorage.getItem("saved_cust_name")) {
         document.getElementById("cust-name").value = localStorage.getItem("saved_cust_name");
     }
