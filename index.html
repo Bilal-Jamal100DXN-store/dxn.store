@@ -796,20 +796,6 @@
           }
           console.error("خطأ خلفي في تحديث البيانات:", err);
         });
-
-      // استرجاع معلومات الزبون المحفوظة (أكوادك القديمة كما هي)
-      if (localStorage.getItem("saved_cust_name")) {
-        document.getElementById("cust-name").value = localStorage.getItem("saved_cust_name");
-      }
-      if (localStorage.getItem("saved_cust_phone")) {
-        document.getElementById("cust-phone").value = localStorage.getItem("saved_cust_phone");
-      }
-      if (localStorage.getItem("saved_cust_address")) {
-        document.getElementById("cust-address").value = localStorage.getItem("saved_cust_address");
-      }
-      if (localStorage.getItem("saved_cust_governorate")) {
-        document.getElementById("cust-governorate").value = localStorage.getItem("saved_cust_governorate");
-      }
     };
 
     function handleResponse(response) {
@@ -1237,18 +1223,30 @@ function updateCartUI(updateTimer = true) {
     
     // إذا عبر وقت الانتهاء الحالي (14 يوم)
     if (expiryTime && Date.now() > parseInt(expiryTime)) {
-        cart = []; // تفرغ السلة
-        localStorage.removeItem('dxn_products_cart'); // تحذف السلة من الذاكرة
-        localStorage.removeItem('cart_expiry_time'); // تصفر التايمر
+        cart = []; 
+        localStorage.removeItem('dxn_products_cart'); 
+        localStorage.removeItem('cart_expiry_time'); 
     } else {
-        // إذا ما عبرت الـ 14 يوم، حمل السلة القديمة
         const savedCart = localStorage.getItem('dxn_products_cart');
         if (savedCart) {
             cart = JSON.parse(savedCart);
         }
     }
     
-    // مررنا false لمنع تصفير العداد عند مجرد دخول الموقع
+    // 🟢 هنا تم وضعهم لتشتغل فوراً بدون انتظار تحميل الصور
+    if (localStorage.getItem("saved_cust_name")) {
+        document.getElementById("cust-name").value = localStorage.getItem("saved_cust_name");
+    }
+    if (localStorage.getItem("saved_cust_phone")) {
+        document.getElementById("cust-phone").value = localStorage.getItem("saved_cust_phone");
+    }
+    if (localStorage.getItem("saved_cust_address")) {
+        document.getElementById("cust-address").value = localStorage.getItem("saved_cust_address");
+    }
+    if (localStorage.getItem("saved_cust_governorate")) {
+        document.getElementById("cust-governorate").value = localStorage.getItem("saved_cust_governorate");
+    }
+    
     updateCartUI(false); 
 }
 
