@@ -400,9 +400,9 @@
   width: 100%; 
   height: 100%;
   background: rgba(0,0,0,0.5);
-  display: flex !important;          /* إجبار خاصية الفليكس */
-  justify-content: center !important; /* توسيط أفقي حتمي */
-  align-items: center !important;     /* توسيط عمودي حتمي */
+  display: none; /* ✅ الافتراضي مخفية، وتظهر فقط عند الاستدعاء */
+  justify-content: center; 
+  align-items: center;     
   z-index: 99999;
   padding: 15px;
   box-sizing: border-box;
