@@ -601,6 +601,44 @@ button, .btn, img, nav, i, .menu {
 
   <link rel="icon" type="image/jpeg" href="Tbweb.jpg">
   <link rel="apple-touch-icon" href="Tbweb.jpg">
+
+    <style>
+        /* تصميم زر الصعود للأعلى */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            background-color: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+            z-index: 999;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .scroll-to-top svg {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.2s ease;
+        }
+        .scroll-to-top:active {
+            transform: scale(0.92) translateY(-3px);
+            background-color: #000000;
+        }
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -1267,6 +1305,37 @@ function updateCartUI(updateTimer = true) {
 document.addEventListener('DOMContentLoaded', initCart);
   
 </script>
+
+  <!-- زر العودة للأعلى الفخم -->
+<button id="scrollToTopBtn" class="scroll-to-top" title="العودة للأعلى">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 15L12 9L6 15" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</button>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.addEventListener("scroll", function () {
+            const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const quarterPage = totalScrollHeight * 0.25;
+
+            if (window.scrollY > quarterPage) {
+                scrollToTopBtn.classList.add("show");
+            } else {
+                scrollToTopBtn.classList.remove("show");
+            }
+        });
+
+        scrollToTopBtn.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    });
+    </script>
       
 </body>
 </html>
