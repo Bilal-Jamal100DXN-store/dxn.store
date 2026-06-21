@@ -583,6 +583,19 @@
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+   /* 1. إلغاء ومضة الضغط الرمادية على الأزرار والروابط تماماً */
+a, button, .btn, img, i {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    outline: none !important;
+}
+
+/* 2. منع التحديد العشوائي على الأزرار والصور والقوائم فقط أثناء التقليب */
+button, .btn, img, nav, i, .menu {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+}
     
 </style>
 
@@ -1116,7 +1129,7 @@ function updateCartUI(updateTimer = true) {
       localStorage.setItem("saved_cust_governorate", governorate);
       localStorage.setItem("saved_cust_address", address);
 
-      var orderTitle = "• *طلب شراء جديد من متجر منتجات DXN* \n\n";
+      var orderTitle = " *طلب شراء جديد من متجر منتجات DXN* \n\n";
       var customerInfo = "• *الزبون:* " + name + "\n" +
                          "• *الهاتف:* " + phone + "\n" +
                          "• *المحافظة:* " + governorate + "\n" +
