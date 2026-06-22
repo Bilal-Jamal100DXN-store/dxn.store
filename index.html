@@ -602,61 +602,49 @@ button, .btn, img, nav, i, .menu {
   <link rel="icon" type="image/jpeg" href="Tbweb.jpg">
   <link rel="apple-touch-icon" href="Tbweb.jpg">
 
-    <style>
-      
-       /* تصميم زر الصعود للأعلى المطور - أفخم وأكبر */
+   <style>
 .scroll-to-top {
-    position: fixed;
-    bottom: 30px; /* رفعت مسافته قليلاً عن الحافة */
-    right: 30px;
-    width: 60px; /* كبرت الحجم من 48 إلى 60 */
-    height: 60px; /* كبرت الحجم من 48 إلى 60 */
-    
-    /* تأثير الزجاج الخلفي الفخم (Glassmorphism) */
-    background-color: rgba(18, 18, 18, 0.85); /* أسود شفاف قليلاً */
-    -webkit-backdrop-filter: blur(10px); /* ضبابية للمحتوى الخلفي لأجهزة الآيفون */
-    backdrop-filter: blur(10px); /* ضبابية للمحتوى الخلفي للأندرويد */
-    
-    border: 1px solid rgba(255, 255, 255, 0.2); /* إطار أوضح وأفخم */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    
-    /* ظل أعمق يعطي عمق وفخامة (Deep Shadow) */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    
+    position: fixed !important;
+    bottom: 100px !important; /* يرفعه لي فوق حتى يبتعد عن أزرار الاتصال تماماً */
+    right: 25px !important;   /* يثبته بجهة اليمين */
+    width: 60px !important;
+    height: 60px !important;
+    background-color: rgba(18, 18, 18, 0.85) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5) !important;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة ظهور مرنة */
-    z-index: 999;
-    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    z-index: 99999 !important; /* يضمن ظهوره فوق كل شيء بالصفحة */
+    -webkit-tap-highlight-color: transparent !important;
 }
 
-/* حركة السهم الجديد داخل الزر */
 .scroll-to-top svg {
-    width: 28px; /* كبرت السهم ليناسب الزر الجديد */
-    height: 28px;
-    transition: transform 0.3s ease;
+    width: 28px !important;
+    height: 28px !important;
+    transition: transform 0.3s ease !important;
 }
 
-/* تأثير تفاعلي عند الضغط بالموبايل (Feedback) */
 .scroll-to-top:active {
-    transform: scale(0.9) translateY(-5px); /* ينضغط للداخل ويرتفع قليلاً */
-    background-color: rgba(0, 0, 0, 0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transform: scale(0.9) translateY(-5px) !important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* فئة الظهور (تتحكم بها لغة الجافاسكريبت - لا تلمسها) */
+/* فئة الظهور الخاصة بالجافاسكريبت */
 .scroll-to-top.show {
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
+</style>
 
-/* تأكد أن كود الجافاسكريبت القديم لم يتغير، فهو يعمل بشكل ممتاز مع هذا التصميم */
-    </style>
-    
 </head>
 
 <body>
@@ -701,7 +689,6 @@ button, .btn, img, nav, i, .menu {
 <div id="products-container" class="products-grid" style="display: none;"></div>
 
 <div class="floating-contact-bar">
-    <!-- واتساب -->
     <div style="display: flex; flex-direction: column; gap: 6px; flex: 1;">
         <div class="contact-item" style="background: #e8f5e9; color: #114232;">
             <span style="font-size: 12px; direction: ltr;">+9647875415845</span>
@@ -709,22 +696,22 @@ button, .btn, img, nav, i, .menu {
             <span class="tooltip-text">نسخ الرقم</span>
         </div>
       
-      <a href="https://wa.me/9647875415845" onclick="event.preventDefault(); window.location.href='whatsapp://send?phone=9647875415845'; setTimeout(function(){ window.open('https://wa.me/9647875415845', '_blank'); }, 500);" class="floating-btn btn-wa">واتساب للتواصل 💬</a>
+        <a href="https://wa.me/9647875415845" 
+           onclick="event.preventDefault(); if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){ window.location.href='whatsapp://send?phone=9647875415845'; } else { window.open('https://wa.me/9647875415845', '_blank'); }" 
+           class="floating-btn btn-wa">
+           واتساب للتواصل 💬
+        </a>
     </div>
-
-    <!-- تليجرام -->
 
     <div style="display: flex; flex-direction: column; gap: 6px; flex: 1;">
         <div class="contact-item" style="background: #e1f5fe; color: #0288d1;">
             <span style="font-size: 12px; direction: ltr;">@Ert234789</span>
             <span class="copy-btn-text" onclick="copyText('@Ert234789', this)">نسخ</span>
             <span class="tooltip-text">نسخ المعرف</span>
-
         </div>
 
         <a href="https://t.me/Ert234789" class="floating-btn btn-tg">تليجرام للتواصل 💬</a>
     </div>
-
 </div>
 
   <div id="member-modal" class="cart-modal" style="display:none;">
@@ -1237,23 +1224,18 @@ function updateCartUI(updateTimer = true) {
       var encodedMessage = encodeURIComponent(fullMessage);
 
    if (platform === 'whatsapp') {
-    // الرابط المباشر اللي يجبر الموبايل يفتح التطبيق ويخير الزبون بين (العادي والـ Business)
-    var appUrl = "whatsapp://send?phone=9647875415845&text=" + encodedMessage;
-    var webUrl = "https://wa.me/9647875415845?text=" + encodedMessage;
-    
-    // يفتح التطبيق فوراً بالموبايل
-    window.location.href = appUrl;
-    
-    // خطة بديلة: إذا الزبون فاتح من حاسبة وما عنده تطبيق، يفتح له رابط الويب العادي ورا نص ثانية
-    setTimeout(function() {
-        window.open(webUrl, '_blank');
-    }, 500);
-
-    } else if (platform === 'telegram') {
-    // التليكرام يبقـى مثل ما هو بدون أي تغيير
+    // الفحص الذكي لنوع الجهاز (موبايل أو حاسبة) حتى ما تفتح صفحة بيضاء فارغة
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // للموبايل: يفتح التطبيق مباشرة ويخيره بين (العادي والأعمال) ويبقى بنفس صفحة موقعك
+        window.location.href = "whatsapp://send?phone=9647875415845&text=" + encodedMessage;
+    } else {
+        // للحاسبة واللابتوب: يفتح الواتساب ويب بتبويب جديد طبيعي
+        window.open("https://wa.me/9647875415845?text=" + encodedMessage, '_blank');
+    }
+   } else if (platform === 'telegram') {
     var telegramUrl = "https://t.me/Ert234789?text=" + encodedMessage;
     window.open(telegramUrl, '_blank');
-    }
+   }
  }
 
     function copyMemberID() {
@@ -1409,6 +1391,12 @@ function shareProduct(name, description, imgUrl) {
 }
       
     </script>
+
+  <div id="scrollToTopBtn" class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</div>
       
 </body>
 </html>
