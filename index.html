@@ -1380,7 +1380,7 @@ document.addEventListener('DOMContentLoaded', initCart);
   function shareEntireSite() {
     // 1. جلب رابط الموقع الحالي ديناميكياً وصياغة الرسالة
     var currentUrl = window.location.origin + window.location.pathname;
-    var promoMessage = "🌸 مرحباً! تفضل بزيارة متجر الرافدين للمنتجات العضوية والطبيعية، واستكشف أفضل المنتجات والمكملات الغذائية:\n" + currentUrl;
+    var promoMessage = "مرحباً! تفضل بزيارة متجر DXN للمنتجات العضوية والطبيعية، واستكشف أفضل المنتجات والمكملات الغذائية:\n" + currentUrl;
 
     // 2. التحقق من البيئة (تطبيق أم متصفح خارجي)
     if (typeof AppInventor !== 'undefined') {
@@ -1390,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', initCart);
         // إذا ضغط عليه من متصفح خارجي (كروم، سفاري، لابتوب)
         if (navigator.share) {
             navigator.share({
-                title: "متجر الرافدين للمنتجات العضوية",
+                title: "متجر DXN للمنتجات العضوية",
                 text: promoMessage,
                 url: currentUrl
             }).catch(err => console.log("خطأ في المشاركة:", err));
@@ -1438,7 +1438,7 @@ document.addEventListener('DOMContentLoaded', initCart);
 function shareProduct(productName) {
     // 1. صياغة الرسالة والنص الذي سيظهر عند المشاركة
     var storeUrl = window.location.origin + window.location.pathname; 
-    var fullShareMessage = "🔥 شاهد منتج [" + productName + "] في متجر الرافدين للمنتجات العضوية:\n" + storeUrl;
+    var fullShareMessage = "شاهد منتج [" + productName + "] في متجر DXN للمنتجات الصحية:\n" + storeUrl;
 
     // 2. الفحص إذا كان مفتوحاً داخل التطبيق
     if (typeof AppInventor !== 'undefined') {
