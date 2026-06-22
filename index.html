@@ -19,6 +19,11 @@
 
   <style>
 
+    .scroll-to-top, #scrollToTopBtn {
+    bottom: 85px !important; /* يرفع الزر للأعلى حتى يخلص من التداخل */
+    z-index: 9999 !important; /* يضمن ظهوره فوق كل شيء */
+}
+
     /* إلغاء اللون الأزرق المشوش والوميض عند الضغط في الموقع والتطبيق */
 * {
     -webkit-tap-highlight-color: transparent !important;
@@ -1411,15 +1416,6 @@ function shareProduct(name, description, imgUrl) {
 }
       
     </script>
-
-      <style>
-@media screen and (max-width: 768px) {
-    .scroll-to-top, #scrollToTopBtn {
-        bottom: 90px !important; /* يرفعه فوق أزرار التواصل بالموبايل */
-        z-index: 9999 !important; /* يضمن ظهوره فوق كل شيء */
-    }
-}
-</style>
       
 </body>
 </html>
