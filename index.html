@@ -1108,23 +1108,26 @@
              ? `<img class="product-img" src="${imgUrl}" alt="${name}" style="cursor: zoom-in;" onclick="zoomImage('${imgUrl}')" onerror="handleImgError(this)">`
              : `<div class="product-img-fallback">🌿</div>`;
 
-           card.innerHTML = `
-             ${imageSection}
-             <div class="product-info">
-               <div>
-                 <h3 class="product-name">${name}</h3>
-                 ${description ? `<p class="product-benefits">${description}</p>` : ''}
-               </div>
-               <div>
-                 <div class="product-price">${formattedPrice} د.ع</div>
-                 <div class="product-pv" style="font-size: 14px; color: #114232; font-weight: bold; margin-top: 4px; background: #fff8db; padding: 6px; border-radius: 4px; display: inline-block; text-align:center; width:calc(100% - 12px);">⭐ النقاط: ${productPV} PV</div>
-                 
-                <div style="display: flex; gap: 8px; margin-top: 10px; align-items: center; height: 46px !important;">
-                  <button onclick="addToCart('${safeName}', ${rawPrice}, ${productPV})" 
-                          class="btn-add-to-cart" 
-                          style="background-color: #114232 !important; flex: 1; margin: 0 !important; margin-top: 0 !important; transform: none !important; position: relative !important; top: 0 !important; font-size: 16px; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-sizing: border-box !important; height: 46px !important;">
-                    إضافة للسلة
-                  </button>
+          card.innerHTML = `
+     ${imageSection}
+     <div class="product-info">
+       <div>
+         <h3 class="product-name">${name}</h3>
+         ${description ? `<p class="product-benefits">${description}</p>` : ''}
+       </div>
+       <div>
+         <div class="product-price">${formattedPrice} د.ع</div>
+         
+         <div class="product-pv" style="font-size: 14px; color: #114232; font-weight: bold; margin-top: 8px; background: #fff8db; padding: 8px; border-radius: 6px; display: flex; align-items: center; justify-content: center; box-sizing: border-box !important; width: 100%;">
+            ⭐ النقاط: ${productPV} PV
+         </div>
+         
+        <div style="display: flex; gap: 8px; margin-top: 10px; align-items: center; height: 46px !important;">
+          <button onclick="addToCart('${safeName}', ${rawPrice}, ${productPV})" 
+                  class="btn-add-to-cart" 
+                  style="background-color: #114232 !important; flex: 1; margin: 0 !important; margin-top: 0 !important; transform: none !important; position: relative !important; top: 0 !important; font-size: 16px; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-sizing: border-box !important; height: 46px !important;">
+            إضافة للسلة
+          </button>
                   
                   <button type="button" 
                           onclick="event.stopPropagation(); shareProduct('${safeName}', '${safeDesc}')" 
