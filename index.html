@@ -1397,8 +1397,7 @@ document.addEventListener('DOMContentLoaded', initCart);
         if (navigator.share) {
             navigator.share({
                 title: "متجر DXN للمنتجات العضوية",
-                text: promoMessage,
-                url: currentUrl
+                text: promoMessage
             }).catch(err => console.log("خطأ في المشاركة:", err));
         } else {
             // حل احتياطي للمتصفحات التي لا تدعم المشاركة المباشرة
@@ -1449,7 +1448,7 @@ function shareProduct(productName, productBenefit) {
     var fullShareMessage = "• *متجر DXN للمنتجات الصحية* \n\n" +
                            "• *المنتج:* " + productName + "\n" +
                            "• *الفوائد:* " + productBenefit + "\n\n" +
-                           "• *رابط المتجر:* " + storeUrl;
+                           "• *رابط المتجر:* \n" + storeUrl;
 
     // 3. الفحص والتمرير للتطبيق أو المتصفح
     if (typeof AppInventor !== 'undefined') {
