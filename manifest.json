@@ -2,7 +2,7 @@
   "name": "متجر DXN للمنتجات العضوية", 
   "short_name": "متجر منتجات DXN",
   "description": "متجر متميز لبيع المنتجات الصحية والطبيعية من DXN",
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#114232",
   "theme_color": "#114232",
