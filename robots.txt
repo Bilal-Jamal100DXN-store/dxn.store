@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bilal-jamal100dxn-store.github.io/dxn.store/sitemap.xml
