@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dxn-store-v26'; // زيدنا الإصدار لـ v26 علمود يمسح أي خربطة قديمة بجهازك
+const CACHE_NAME = 'dxn-store-v27'; // زيدنا الإصدار لـ v26 علمود يمسح أي خربطة قديمة بجهازك
 const assets = [
   './',
   './manifest.json',
