@@ -1037,7 +1037,7 @@
 
       // ب- فحص إذا كان الزائر بداخل الـ APK الخاص بنا لإخفاء أزرار التحميل
 // غيّرنا 'wv' إلى بصمة تطبيقك الخاصة لمنع التداخل مع الإنستغرام
-var isInsideApk = navigator.navigator.userAgent.includes('MyApp_AlRafidain_V1');
+var isInsideApk = navigator.userAgent.includes('MyApp_AlRafidain_V1');
 
 if (isInsideApk) {
     var topScrollBtn = document.getElementById("scroll-to-download-btn");
