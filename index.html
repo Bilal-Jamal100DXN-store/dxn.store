@@ -1511,7 +1511,7 @@
         }
     }
 
-    function shareEntireSite() {
+   function shareEntireSite() {
     var currentUrl = window.location.origin + window.location.pathname;
     var promoMessage = "مرحباً! تفضل بزيارة متجر DXN للمنتجات العضوية والطبيعية، واستكشف أفضل المنتجات والمكملات الغذائية:\n" + currentUrl;
 
@@ -1524,43 +1524,61 @@
                 text: promoMessage
             }).catch(err => console.log("خطأ في المشاركة:", err));
         } else {
-            // الحل الذكي للإنستغرام: بدلاً من النسخ فقط، نفتح الواتساب مباشرة للمشاركة!
-            var encodedMessage = encodeURIComponent(promoMessage);
-            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                window.location.href = "whatsapp://send?text=" + encodedMessage;
-            } else {
-                window.open("https://api.whatsapp.com/send?text=" + encodedMessage, '_blank');
-            }
+            // استدعاء القائمة المخصصة للإنستغرام بدلاً من فتح الواتساب فوراً
+            openCustomSharePopup(promoMessage);
         }
     }
 }
-
-    function shareProduct(productName, productBenefit) {
+   function shareProduct(productName, productBenefit) {
     var storeUrl = window.location.origin + window.location.pathname; 
     var fullShareMessage = "• *متجر DXN للمنتجات الصحية* \n\n" +
                            "• *المنتج:* " + productName + "\n" +
                            "• *الفوائد:* " + productBenefit + "\n\n" +
                            "• *رابط المتجر:* \n" + storeUrl;
 
-    if (typeof AppInventor !== 'undefined') {
-        AppInventor.setWebViewString("share:" + fullShareMessage);
-    } else {
-        if (navigator.share) {
-            navigator.share({
-                title: productName,
-                text: fullShareMessage
-            }).catch(err => console.log(err));
+        if (typeof AppInventor !== 'undefined') {
+            AppInventor.setWebViewString("share:" + fullShareMessage);
         } else {
-            // الحل الذكي للإنستغرام بكرت المنتج لفتح الواتساب فوراً
-            var encodedMessage = encodeURIComponent(fullShareMessage);
-            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                window.location.href = "whatsapp://send?text=" + encodedMessage;
+            if (navigator.share) {
+                navigator.share({
+                    title: productName,
+                    text: fullShareMessage
+                }).catch(err => console.log(err));
             } else {
-                window.open("https://api.whatsapp.com/send?text=" + encodedMessage, '_blank');
+                // استدعاء القائمة المخصصة للإنستغرام عند حظر النظام الداخلي
+                openCustomSharePopup(fullShareMessage);
             }
         }
     }
+
+    function openCustomSharePopup(message) {
+    window.pendingShareMessage = message;
+    
+    let oldPopup = document.getElementById('custom-share-popup');
+    if (oldPopup) oldPopup.remove();
+
+    let overlay = document.createElement('div');
+    overlay.id = 'custom-share-popup';
+    overlay.style = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:100000; display:flex; justify-content:center; align-items:center; direction:rtl;';
+
+    let box = document.createElement('div');
+    box.style = 'background:white; padding:20px; border-radius:12px; width:85%; max-width:340px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.2); font-family:sans-serif;';
+    
+    box.innerHTML = `
+        <h4 style="margin:0 0 10px 0; color:#114232; font-size:16px; font-weight:bold;">📢 خيارات المشاركة المتاحة</h4>
+        <p style="margin:0 0 20px 0; color:#666; font-size:13px;">بسبب قيود تطبيق الإنستغرام، يرجى اختيار المنصة المفضلة لديك:</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(window.pendingShareMessage), '_blank'); document.getElementById('custom-share-popup').remove();" style="background:#25D366; color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:14px;">🟢 مشاركة عبر واتساب</button>
+            <button onclick="window.open('https://t.me/share/url?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent(window.pendingShareMessage), '_blank'); document.getElementById('custom-share-popup').remove();" style="background:#24A1DE; color:white; border:none; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:14px;">🔵 مشاركة عبر تليجرام</button>
+            <button onclick="navigator.clipboard.writeText(window.pendingShareMessage); alert('📋 تم نسخ النص والرابط بنجاح! يمكنك الآن لصقه ومشاركته بأي تطبيق آخر.'); document.getElementById('custom-share-popup').remove();" style="background:#f5f5f5; color:#333; border:1px solid #ccc; padding:12px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:14px;">📋 نسخ الرابط والنص بالكامل</button>
+        </div>
+        <button onclick="document.getElementById('custom-share-popup').remove();" style="margin-top:15px; background:none; border:none; color:#cc3333; font-weight:bold; cursor:pointer; font-size:14px;">إلغاء</button>
+    `;
+    
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
 }
+    
   </script>
 
   <div id="update-banner" style="display: none; position: fixed; bottom: 20px; left: 20px; right: 20px; background-color: #114232; color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000; direction: rtl; font-family: sans-serif;">
