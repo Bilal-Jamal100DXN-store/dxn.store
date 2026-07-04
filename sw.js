@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dxn-store-v30'; 
+const CACHE_NAME = 'dxn-store-v31'; 
 const assets = [
   './',
   './manifest.json',
