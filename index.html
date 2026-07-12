@@ -1413,7 +1413,7 @@
     });
 
     function initCart() {
-    // 🌟 1. تحديد مفتاح ديناميكي للسلة والتوقيت لكل عضو علمود نعزلها تماماً
+    // 1️⃣ تحديد مفتاح ديناميكي للسلة والتوقيت لكل عضو علمود نعزلها تماماً
     let currentMember = (typeof window.memberKey !== 'undefined') ? window.memberKey : 'main';
     let cartStorageKey = 'dxn_cart_' + currentMember;
     let expiryStorageKey = 'cart_expiry_' + currentMember;
@@ -1425,14 +1425,14 @@
         localStorage.removeItem(cartStorageKey); 
         localStorage.removeItem(expiryStorageKey); 
     } else {
-        // 🌟 2. قراءة السلة الخاصة بالعضو المحدد فقط
+        // 2️⃣ قراءة السلة الخاصة بالعضو المحدد فقط
         const savedCart = localStorage.getItem(cartStorageKey);
         if (savedCart) {
             cart = JSON.parse(savedCart);
         }
     }
     
-    // معلومات الزبون تظل عامة علمود ما يرجع يكتب اسمه بكل مرة يتنقل فيها
+    // 3️⃣ قراءة معلومات الزبون إذا كانت مخزنة سابقاً وعرضها بالحقول فوراً
     if (localStorage.getItem("saved_cust_name")) {
         document.getElementById("cust-name").value = localStorage.getItem("saved_cust_name");
     }
@@ -1445,6 +1445,20 @@
     if (localStorage.getItem("saved_cust_governorate")) {
         document.getElementById("cust-governorate").value = localStorage.getItem("saved_cust_governorate");
     }
+
+    // ✨ الحركة السحرية: الحفظ التلقائي الفوري بذاكرة الهاتف بمجرد ما الزبون يكتب أو يختار المحافظة
+    document.getElementById("cust-name").addEventListener("input", function() {
+        localStorage.setItem("saved_cust_name", this.value.trim());
+    });
+    document.getElementById("cust-phone").addEventListener("input", function() {
+        localStorage.setItem("saved_cust_phone", this.value.trim());
+    });
+    document.getElementById("cust-address").addEventListener("input", function() {
+        localStorage.setItem("saved_cust_address", this.value.trim());
+    });
+    document.getElementById("cust-governorate").addEventListener("change", function() {
+        localStorage.setItem("saved_cust_governorate", this.value);
+    });
     
     updateCartUI(false); 
 }
