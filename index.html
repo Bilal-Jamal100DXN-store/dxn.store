@@ -1256,40 +1256,47 @@
     let cart = []; 
 
     window.onload = function() {
-      const googleWebAppUrl = "https://script.google.com/macros/s/AKfycbwPq5PlIvetAueCo5ugjEYIQzLeoBuQMh83n6R2R2-jrVyYt-3ooMKBOTaJWCfjdkMe/exec";
+  const googleWebAppUrl = "https://script.google.com/macros/s/AKfycbwPq5PlIvetAueCo5ugjEYIQzLeoBuQMh83n6R2R2-jrVyYt-3ooMKBOTaJWCfjdkMe/exec";
 
-      const cachedProducts = localStorage.getItem("dxn_products_cache");
-      if (cachedProducts) {
-        allProducts = JSON.parse(cachedProducts);
+  const cachedProducts = localStorage.getItem("dxn_products_cache");
+  if (cachedProducts) {
+    allProducts = JSON.parse(cachedProducts);
+    renderGrid(allProducts);
+  }
+
+  // إذا الصفحة انفتحت من مجلد عضو، اخفي عناصر بلال الخاصة فوراً
+  if (typeof memberKey !== 'undefined' || window.memberKey) {
+    document.querySelectorAll('.main-site-only').forEach(el => el.style.display = 'none');
+  }
+
+  // 🌟 الحركة الذكية: بناء رابط الفيتش وإضافة علامة إذا المفتوح هو موقع عضو
+  let finalFetchUrl = googleWebAppUrl;
+  if (typeof memberKey !== 'undefined' || window.memberKey) {
+    finalFetchUrl += "?isMember=true";
+  }
+
+  // إرسال الطلب بالرابط الجديد (يجلب المنتجات بكل الأحوال بس يبلغ السكربت بنوع الزيارة)
+  fetch(finalFetchUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("فشل الاتصال بسيرفر البيانات");
+      return response.json();
+    })
+    .then(data => {
+      if (data && !data.error) {
+        localStorage.setItem("dxn_products_cache", JSON.stringify(data));
+        allProducts = data;
         renderGrid(allProducts);
+      } else {
+        handleResponse(data);
       }
-
-       // إذا الصفحة انفتحت من مجلد عضو، اخفي عناصر بلال الخاصة فوراً
-      if (typeof memberKey !== 'undefined' || window.memberKey) {
-      document.querySelectorAll('.main-site-only').forEach(el => el.style.display = 'none');
-     }
-
-      fetch(googleWebAppUrl)
-        .then(response => {
-          if (!response.ok) throw new Error("فشل الاتصال بسيرفر البيانات");
-          return response.json();
-        })
-        .then(data => {
-          if (data && !data.error) {
-            localStorage.setItem("dxn_products_cache", JSON.stringify(data));
-            allProducts = data;
-            renderGrid(allProducts);
-          } else {
-            handleResponse(data);
-          }
-        })
-        .catch(err => {
-          if (!allProducts || allProducts.length === 0) {
-            document.getElementById('loading').innerHTML = "<span style='color:red;'>حدث خطأ في الاتصال: " + err.message + "</span>";
-          }
-          console.error("خطأ خلفي في تحديث البيانات:", err);
-        });
-    };
+    })
+    .catch(err => {
+      if (!allProducts || allProducts.length === 0) {
+        document.getElementById('loading').innerHTML = "<span style='color:red;'>حدث خطأ في الاتصال: " + err.message + "</span>";
+      }
+      console.error("خطأ خلفي في تحديث البيانات:", err);
+    });
+};
 
     // دالات الإشعارات والنوافذ والتحميل البرمجية المخصصة في منتصف الشاشة
     function showLoading(show) {
@@ -1377,45 +1384,46 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-      initCart();
+  initCart();
 
-     var isInsideApk = navigator.userAgent.includes('MyApp_AlRafidain_V1');
+  // 1️⃣ الفحص الذكي المزدوج (للـ APK والـ PWA سوة)
+  var isInsideApk = navigator.userAgent.includes('MyApp_AlRafidain_V1');
+  var isInsidePwa = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
 
-     if (isInsideApk) {
-        var topScrollBtn = document.getElementById("scroll-to-download-btn");
-        var bottomDownloadSection = document.getElementById("download-section-wrapper");
-    
-        if (topScrollBtn) topScrollBtn.style.display = "none";
-        if (bottomDownloadSection) bottomDownloadSection.style.display = "none";
-     } else {
-        var topScrollBtn = document.getElementById("scroll-to-download-btn");
-        var bottomDownloadSection = document.getElementById("download-section-wrapper");
-    
-        if (topScrollBtn) topScrollBtn.style.display = "block"; 
-        if (bottomDownloadSection) bottomDownloadSection.style.display = "block"; 
-     }
+  var topScrollBtn = document.getElementById("scroll-to-download-btn");
+  var bottomDownloadSection = document.getElementById("download-section-wrapper");
 
-      const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-      if (scrollToTopBtn) {
-          window.addEventListener("scroll", function () {
-              const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-              const quarterPage = totalScrollHeight * 0.25;
+  // 2️⃣ هنا قفلنا الشرط: إذا تحقق أي واحد من الاثنين، يختفون فوراً
+  if (isInsideApk || isInsidePwa) {
+     if (topScrollBtn) topScrollBtn.style.display = "none";
+     if (bottomDownloadSection) bottomDownloadSection.style.display = "none";
+  } else {
+     if (topScrollBtn) topScrollBtn.style.display = "block"; 
+     if (bottomDownloadSection) bottomDownloadSection.style.display = "block"; 
+  }
 
-              if (window.scrollY > quarterPage) {
-                  scrollToTopBtn.classList.add("show");
-              } else {
-                  scrollToTopBtn.classList.remove("show");
-              }
+  // 3️⃣ كود السهم الصاعد مالتك الأصلي يظل مثل ما هو بدون أي تغيير
+  const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  if (scrollToTopBtn) {
+      window.addEventListener("scroll", function () {
+          const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const quarterPage = totalScrollHeight * 0.25;
+
+          if (window.scrollY > quarterPage) {
+              scrollToTopBtn.classList.add("show");
+          } else {
+              scrollToTopBtn.classList.remove("show");
+          }
+      });
+
+      scrollToTopBtn.addEventListener("click", function () {
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
           });
-
-          scrollToTopBtn.addEventListener("click", function () {
-              window.scrollTo({
-                  top: 0,
-                  behavior: "smooth"
-              });
-          });
-      }
-    });
+      });
+  }
+});
 
     function initCart() {
     // 1️⃣ تحديد مفتاح ديناميكي للسلة والتوقيت لكل عضو علمود نعزلها تماماً
