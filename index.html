@@ -1009,15 +1009,15 @@
            style="width: 100%; padding: 12px 20px; border: 2px solid #114232; border-radius: 50px; font-size: 15px; box-sizing: border-box; text-align: right; font-weight: 600; color: #114232; background-color: #ffffff; box-shadow: 0 4px 12px rgba(17, 66, 50, 0.04); outline: none;">
   </div>
 
- <!-- 📂 القائمة المنسدلة الجديدة البديلة عن الأزرار الزاحفة -->
+ <!-- 📂 القائمة المنسدلة المحمية ضد قص النقاط والخطوط العربية في الموبايل -->
   <div style="max-width: 420px; margin: 0 auto 25px auto; padding: 0 15px; direction: rtl;">
     <select id="category-select" onchange="filterCategory(this.value)" 
-            style="width: 100%; padding: 12px 20px; border: 2px solid #114232; border-radius: 50px; font-size: 15px; box-sizing: border-box; text-align: right; font-weight: 600; color: #114232; background-color: #ffffff; box-shadow: 0 4px 12px rgba(17, 66, 50, 0.04); outline: none; appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23114232\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polyline points=\'6 9 12 15 18 9\'></polyline></svg>'); background-repeat: no-repeat; background-position: left 20px center; background-size: 16px;">
+            style="width: 100%; padding: 14px 20px; border: 2px solid #114232; border-radius: 50px; font-size: 15px; box-sizing: border-box; text-align: right; font-weight: 600; color: #114232; background-color: #ffffff; box-shadow: 0 4px 12px rgba(17, 66, 50, 0.04); outline: none; appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23114232\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polyline points=\'6 9 12 15 18 9\'></polyline></svg>'); background-repeat: no-repeat; background-position: left 20px center; background-size: 16px; line-height: 1.5;">
       <option value="الكل" selected>📂 تصفح حسب الأقسام...</option>
-      <option value="مكملات غذائية">🌿 مكملات غذائية</option>
-      <option value="الأغذية والمشروبات الصحية">☕ الأغذية والمشروبات الصحية</option>
-      <option value="منتجات العناية الشخصية">🧼 منتجات العناية الشخصية</option>
-      <option value="منتجات البشرة والتجميل">✨ منتجات البشرة والتجميل</option>
+      <option value="مكملات غذائية">مكملات غذائية</option>
+      <option value="الأغذية والمشروبات الصحية">الأغذية والمشروبات الصحية</option>
+      <option value="منتجات العناية الشخصية">منتجات العناية الشخصية</option>
+      <option value="منتجات البشرة والتجميل">منتجات البشرة والتجميل</option>
     </select>
   </div>
 
@@ -1613,19 +1613,26 @@ function filterCategory(category) {
 }
     
 
-// 🔍 دالة البحث الذكي مع قفل الأمان
+// 🔍 دالة البحث الذكي الشامل: تبحث في كل المنتجات وتلغي تقييد الأقسام تلقائياً
 function searchProducts() {
   // ⛔ شرط الأمان: إذا لسه كاعد يحمل البيانات، لتشغل البحث علمود ما يخرب اللودر
   if (!allProducts || allProducts.length === 0) return;
 
   let query = document.getElementById("product-search").value.trim().toLowerCase();
   
+  // 🌟 الحركة الذكية: إذا بدأ يكتب، صفر القسم ورجعه للكل علمود يظهر نتائج المتجر بالكامل
+  if (query !== "") {
+    currentCategory = 'الكل';
+    const selectElement = document.getElementById("category-select");
+    if (selectElement) selectElement.value = 'الكل';
+  }
+
   let filtered = allProducts.filter(p => {
     let nameMatch = p.name ? p.name.toLowerCase().includes(query) : false;
     let descMatch = p.description ? p.description.toLowerCase().includes(query) : false;
-    let categoryMatch = (currentCategory === 'الكل') || (p.category && String(p.category).trim() === currentCategory.trim());
     
-    return categoryMatch && (nameMatch || descMatch);
+    // البحث هسة صار حر ويقرأ كل المنتجات بدون تقييد
+    return nameMatch || descMatch;
   });
   
   renderGrid(filtered);
