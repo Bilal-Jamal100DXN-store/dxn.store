@@ -81,43 +81,7 @@
     }
 
     /* =================================================== */
-    /* 2. الهيدر ومكونات الترويسة (Header & Top Elements)  */
-    /* =================================================== */
-   header {
-  background: linear-gradient(135deg, #114232 0%, #1c5c47 100%) !important;
-  padding: 35px 20px !important;
-  text-align: center;
-  max-width: 800px;
-  margin: 25px auto !important;
-  border-radius: 20px !important;
-  box-shadow: 0 10px 30px rgba(17, 66, 50, 0.15) !important;
-  border: none !important;
-  color: #ffffff !important;
-}
-
-/* تنسيق أزرار الأقسام لتصبح أكثر عصرية وتناسقاً مع البحث */
-.categories {
-  gap: 12px !important;
-  margin: 25px auto !important;
-}
-
-.btn-category {
-  border: 2px solid #114232 !important;
-  color: #114232;
-  padding: 10px 20px !important;
-  border-radius: 50px !important; /* جعل الأزرار دائرية بالكامل لتطابق شريط البحث */
-  font-size: 14px !important;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-}
-
-    .btn-category:hover, .btn-category.active {
-      background-color: #27ae60;
-      border-color: #27ae60;
-      color: white;
-    }
-
-    /* =================================================== */
-    /* 3. كرت العضوية المطور (Membership Card)            */
+    /* 2. كرت العضوية المطور (Membership Card)            */
     /* =================================================== */
     .member-card-box {
       background: linear-gradient(135deg, #ffffff, #f9fbf9) !important;
@@ -180,7 +144,7 @@
     }
 
     /* =================================================== */
-    /* 4. شبكة المنتجات والبطاقات (Products Grid & Cards)  */
+    /* 3. شبكة المنتجات والبطاقات (Products Grid & Cards)  */
     /* =================================================== */
     .products-grid {
       display: grid;
@@ -285,7 +249,7 @@
     }
 
     /* =================================================== */
-    /* 5. العناصر العائمة المحدثة (Floating Components)   */
+    /* 4. العناصر العائمة المحدثة (Floating Components)   */
     /* =================================================== */
     #floating-share-btn {
       position: fixed;
@@ -349,7 +313,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: rgba(55, 65, 81, 0.98) !important; /* 🌟 رصاصي غامق (Charcoal) ممتاز للتناسق */
+      background: rgba(55, 65, 81, 0.98) !important; 
       padding: 10px 16px;
       border-radius: 16px;
       box-shadow: 0 6px 25px rgba(0,0,0,0.25);
@@ -364,7 +328,7 @@
       width: 100%;
       text-align: center;
       font-weight: bold;
-      color: #ffffff !important; /* 🌟 نص أبيض ناصع ليبرز فوق الرصاصي الغامق */
+      color: #ffffff !important; 
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -444,7 +408,7 @@
     }
 
     /* =================================================== */
-    /* 6. النوافذ المنبثقة والسلة (Modals & Cart Content)  */
+    /* 5. النوافذ المنبثقة والسلة (Modals & Cart Content)  */
     /* =================================================== */
     .cart-modal {
       position: fixed;
@@ -567,9 +531,9 @@
       font-size: 19px !important; 
       font-weight: bold !important; 
       text-align: right; 
-      background: #f1f5f9 !important; /* 🌟 رصاصي فاتح مريح وعالي الوضوح بداخل السلة */
+      background: #f1f5f9 !important; 
       border: 1px solid #cbd5e1 !important;
-      border-right: 6px solid #114232 !important; /* الخط الجانبي الأخضر المميز للمتجر */
+      border-right: 6px solid #114232 !important; 
       border-radius: 12px !important;
       padding: 18px 20px !important;
       position: -webkit-sticky !important;
@@ -582,7 +546,7 @@
       align-items: center;
       box-sizing: border-box;
       width: 100%;
-      color: #114232 !important; /* 🌟 جعل النص باللون الأخضر الغامق لزيادة التناسق والوضوح */
+      color: #114232 !important; 
     }
 
     @media (min-width: 769px) {
@@ -627,7 +591,7 @@
         align-self: end !important; 
         position: sticky !important;
         bottom: 25px !important;
-        background: #f1f5f9 !important; /* 🌟 رصاصي فاتح منسق */
+        background: #f1f5f9 !important; 
         border: 1px solid #e2e8f0 !important;
         border-right: 6px solid #114232 !important;
         box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.05) !important;
@@ -655,7 +619,7 @@
     }
 
     /* =================================================== */
-    /* 7. استمارة الشراء والاتصال (Checkout Form & Tooltip) */
+    /* 6. استمارة الشراء والاتصال (Checkout Form & Tooltip) */
     /* =================================================== */
     .checkout-form {
       border-top: 3px solid #114232;
@@ -770,7 +734,7 @@
     }
 
     /* =================================================== */
-    /* 8. شاشات الموبايل والاستجابة (Responsive & Mobile)  */
+    /* 7. شاشات الموبايل والاستجابة (Responsive & Mobile)  */
     /* =================================================== */
     @media (max-width: 768px) {
       .checkout-form {
@@ -794,14 +758,6 @@
       .copy-card-btn { 
         padding: 14px 28px; 
         font-size: 17px; 
-      }
-
-      .btn-category { 
-        border: 2px solid #2c5e3b !important; 
-        padding: 10px 16px !important; 
-        font-size: 15px !important; 
-        font-weight: 500 !important; 
-        text-shadow: none !important; 
       }
 
       #products-container {
@@ -861,7 +817,6 @@
     .mobile-device .fixed-cart-top { padding: 14px 24px; font-size: 17px; }
     .mobile-device .fixed-cart-top .cart-badge { font-size: 14px; }
     .mobile-device .copy-card-btn { padding: 14px 28px; font-size: 17px; }
-    .mobile-device .btn-category { border: 2px solid #2c5e3b; padding: 10px 16px; font-size: 15px; font-weight: 500 !important; }
     .mobile-device .floating-contact-bar { width: 94% !important; max-width: 440px !important; padding: 12px 10px !important; bottom: 15px !important; gap: 10px !important; } 
     .mobile-device .floating-btn { padding: 12px 4px !important; font-size: 14px !important; font-weight: bold !important; gap: 4px !important; } 
     .mobile-device .checkout-form input, .mobile-device .checkout-form select, .mobile-device .checkout-form textarea { padding: 14px; font-size: 16px; }
@@ -885,7 +840,7 @@
     }
 
     /* =================================================== */
-    /* 9. النوافذ والتحميل المشفرة المخصصة بالمنتصف (New)  */
+    /* 8. النوافذ والتحميل المشفرة المخصصة بالمنتصف (New)  */
     /* =================================================== */
     .loading-overlay {
       display: none;
@@ -912,7 +867,7 @@
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
+      0+0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
@@ -993,10 +948,10 @@
       <div style="display: block !important; width: 100%; margin-top: 2px;">للأندرويد والأبل</div>
   </div>
 
-  <!-- 🔒 1️⃣ كارت التوثيق المطور: يجمع عبارة الوثوقية والزر بمظهر ملموم وعصري جداً -->
+  <!-- 🔒 كارت التوثيق المطور: يجمع عبارة الوثوقية والزر بمظهر ملموم وعصري جداً -->
   <div style="max-width: 420px; margin: 25px auto 15px auto; padding: 15px; background-color: #ffffff; border: 1px solid #eef2f5; border-radius: 16px; box-shadow: 0 4px 15px rgba(17, 66, 50, 0.03); text-align: center; direction: rtl;">
      
- <!-- نص الوثوقية المعتمد بالمنتصف -->
+      <!-- نص الوثوقية المعتمد بالمنتصف -->
       <div style="color: #114232; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
           <span>بإدارة عضو شركة DXN بلال جمال جاسم</span>
       </div>
@@ -1007,18 +962,18 @@
       </button>
   </div>
 
-  <!-- 🔍 2️⃣ خانة البحث الذكي الشامل -->
+  <!-- 🔍 خانة البحث الذكي الشامل -->
   <div style="max-width: 420px; margin: 0 auto 12px auto; padding: 0 15px; direction: rtl;">
     <input type="text" id="product-search" oninput="searchProducts()" placeholder="🔍 ابحث عن اسم المنتج أو الفائدة..." 
            style="width: 100%; padding: 12px 20px; border: 2px solid #114232; border-radius: 50px; font-size: 15px; box-sizing: border-box; text-align: right; font-weight: 600; color: #114232; background-color: #ffffff; box-shadow: 0 4px 12px rgba(17, 66, 50, 0.04); outline: none;">
   </div>
 
-  <!-- 📂 3️⃣ القائمة المنسدلة المحدثة للأقسام -->
+  <!-- 📂 القائمة المنسدلة المحدثة للأقسام -->
   <div style="max-width: 420px; margin: 0 auto 25px auto; padding: 0 15px; direction: rtl;">
     <select id="category-select" onchange="filterCategory(this.value)" 
             style="width: 100%; padding: 14px 20px; border: 2px solid #114232; border-radius: 50px; font-size: 15px; box-sizing: border-box; text-align: right; font-weight: 600; color: #114232; background-color: #ffffff; box-shadow: 0 4px 12px rgba(17, 66, 50, 0.04); outline: none; appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23114232\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polyline points=\'6 9 12 15 18 9\'></polyline></svg>'); background-repeat: no-repeat; background-position: left 20px center; background-size: 16px; line-height: 1.5;">
       
-      <!-- 🌟 ضفنا وسم hidden هنا علشان يثبت كـ عنوان أولي ويختفي من داخل القائمة المنسدلة عند الضغط -->
+      <!-- 🌟 خيار تعريفي مثبت كعنوان أولي ومخفي بداخل القائمة المنسدلة عند الفتح -->
       <option value="الكل" selected hidden>📂 تصفح حسب الأقسام...</option>
       
       <option value="مكملات غذائية">مكملات غذائية</option>
@@ -1263,10 +1218,9 @@
   <script>
     let allProducts = [];
     let cart = []; 
-    let currentCategory = 'الكل'; // 🌟 إضافة ذكية: لحفظ وتذكر القسم المفتوح حالياً أثناء التحميل
+    let currentCategory = 'الكل'; 
 
    window.onload = function() {
-  // تنظيف شريط العنوان فوراً عند إعادة التشغيل وإزالة أي هاش (#)
   if (window.location.hash) {
     history.replaceState(null, document.title, window.location.pathname + window.location.search);
   }
@@ -1276,20 +1230,16 @@
   const cachedProducts = localStorage.getItem("dxn_products_cache");
   if (cachedProducts) {
     allProducts = JSON.parse(cachedProducts);
-    // 🌟 تحديث: الفلترة حسب القسم الحالي المخزون بدل فرش الكل تلقائياً
     filterCategory(currentCategory);
   }
 
-  // إذا الصفحة انفتحت من مجلد عضو، اخفي عناصر بلال الخاصة فوراً
   if (typeof memberKey !== 'undefined' || window.memberKey) {
     document.querySelectorAll('.main-site-only').forEach(el => el.style.display = 'none');
   }
 
-  // لقط اسم العضو المفتوح بالظبط
   let currentMember = (typeof window.memberKey !== 'undefined') ? window.memberKey : 'main';
   let finalFetchUrl = googleWebAppUrl + "?memberKey=" + currentMember;
 
-  // إرسال الطلب بجلب المنتجات
   fetch(finalFetchUrl)
     .then(response => {
       if (!response.ok) throw new Error("فشل الاتصال بسيرفر البيانات");
@@ -1299,8 +1249,6 @@
       if (data && !data.error) {
         localStorage.setItem("dxn_products_cache", JSON.stringify(data));
         allProducts = data;
-        
-        // 🌟 التصحيح الحاسم: عند اكتمال جلب البيانات، اعرض فقط القسم اللّي جان الزبون واكف عليه!
         filterCategory(currentCategory, null);
       } else {
         handleResponse(data);
@@ -1314,7 +1262,6 @@
     });
 };
 
-    // دالات الإشعارات والنوافذ والتحميل البرمجية المخصصة في منتصف الشاشة
     function showLoading(show) {
       document.getElementById('loading-overlay').style.display = show ? 'flex' : 'none';
     }
@@ -1346,17 +1293,16 @@
       };
     }
 
-   // 🟢 دالة نسخ النص الذكية (تغير نص الزر إلى تم! مباشرة بدون واجهة منبثقة)
     function copyText(textToCopy, element) {
       function successState() {
         if (element) {
           var originalText = element.innerHTML;
           element.innerHTML = "تم!";
-          element.style.color = "#27ae60"; // تحويل اللون للأخضر مؤقتاً للتأكيد
+          element.style.color = "#27ae60"; 
           
           setTimeout(function() {
             element.innerHTML = originalText;
-            element.style.color = ""; // إرجاع اللون الأصلي
+            element.style.color = ""; 
           }, 2000);
         }
       }
@@ -1370,7 +1316,6 @@
       }
     }
 
-    // دالة النسخ الاحتياطية المضمونة بداخل التطبيقات والـ APK والـ WebView
     function fallbackCopyText(textToCopy, successCallback) {
       var textArea = document.createElement("textarea");
       textArea.value = textToCopy;
@@ -1402,30 +1347,23 @@
     document.addEventListener("DOMContentLoaded", function() {
   initCart();
 
-  // 1️⃣ الفحص الذكي المزدوج (للـ APK والـ PWA سوة)
   var isInsideApk = navigator.userAgent.includes('MyApp_AlRafidain_V1');
   var isInsidePwa = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
 
   var topScrollBtn = document.getElementById("scroll-to-download-btn");
   var bottomDownloadSection = document.getElementById("download-section-wrapper");
-  var productsContainer = document.getElementById("products-container"); // مسك حاوية شبكة المنتجات
+  var productsContainer = document.getElementById("products-container"); 
 
-  // 2️⃣ هنا قفلنا الشرط: إذا تحقق أي واحد من الاثنين، يختفون فوراً
   if (isInsideApk || isInsidePwa) {
      if (topScrollBtn) topScrollBtn.style.display = "none";
      if (bottomDownloadSection) bottomDownloadSection.style.display = "none";
-     
-     // 🌟 الحل السحري: إعطاء مساحة سفلية إضافية تعوض اختفاء قسم التحميل وتمنع اختناق المنتجات خلف شريط الاستفسار
      if (productsContainer) productsContainer.style.setProperty('margin-bottom', '180px', 'important');
   } else {
-     if (topScrollBtn) topScrollBtn.style.display = "block"; 
+     if (topScrollBtn) topScrollBtn.style.display = "flex"; // 🌟 تصحيح حاسم: إرجاع الـ flex للحفاظ على تناسق الأسطر داخل الزر
      if (bottomDownloadSection) bottomDownloadSection.style.display = "block"; 
-     
-     // إرجاع المساحة الطبيعية إذا فتح من متصفح عادي
      if (productsContainer) productsContainer.style.setProperty('margin-bottom', '60px', 'important');
   }
 
-  // 3️⃣ كود السهم الصاعد مالتك الأصلي يظل مثل ما هو بدون أي تغيير
   const scrollToTopBtn = document.getElementById("scrollToTopBtn");
   if (scrollToTopBtn) {
       window.addEventListener("scroll", function () {
@@ -1449,7 +1387,6 @@
 });
 
     function initCart() {
-    // 1️⃣ تحديد مفتاح ديناميكي للسلة والتوقيت لكل عضو علمود نعزلها تماماً
     let currentMember = (typeof window.memberKey !== 'undefined') ? window.memberKey : 'main';
     let cartStorageKey = 'dxn_cart_' + currentMember;
     let expiryStorageKey = 'cart_expiry_' + currentMember;
@@ -1461,14 +1398,12 @@
         localStorage.removeItem(cartStorageKey); 
         localStorage.removeItem(expiryStorageKey); 
     } else {
-        // 2️⃣ قراءة السلة الخاصة بالعضو المحدد فقط
         const savedCart = localStorage.getItem(cartStorageKey);
         if (savedCart) {
             cart = JSON.parse(savedCart);
         }
     }
     
-    // 3️⃣ 🌟 عزل معلومات التوصيل لكل عضو تلقائياً علمود ما تتداخل بين المواقع
     if (localStorage.getItem("saved_cust_name_" + currentMember)) {
         document.getElementById("cust-name").value = localStorage.getItem("saved_cust_name_" + currentMember);
     }
@@ -1482,7 +1417,6 @@
         document.getElementById("cust-governorate").value = localStorage.getItem("saved_cust_governorate_" + currentMember);
     }
 
-    // 4️⃣ الحفظ الفوري بأسماء مفاتيح مخصصة لكل عضو
     document.getElementById("cust-name").addEventListener("input", function() {
         localStorage.setItem("saved_cust_name_" + currentMember, this.value.trim());
     });
@@ -1520,11 +1454,9 @@
    const loadingDiv = document.getElementById('loading');
    container.innerHTML = '';
 
-   // لقط الكلمة المكتوبة بالبحث حالياً علمود نحددها بالضوء
    let searchInput = document.getElementById("product-search");
    let query = searchInput ? searchInput.value.trim() : "";
 
-   // 🌟 الفحص الحاسم: إظهار الرسالة المخصصة بناءً على سبب اختفاء المنتجات
    if (!productsList || productsList.length === 0) {
      let noResultsMessage = (query !== "") 
        ? "❌ لا يوجد منتج بهذا الاسم أو الفائدة." 
@@ -1532,7 +1464,6 @@
        
      container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; font-size:17px; font-weight:bold; color:#cc3333; margin: 40px auto; direction:rtl;">' + noResultsMessage + '</p>';
    } else {
-     // فرش كروت المنتجات طبيعي بداخل الشبكة
      productsList.forEach(product => {
        const card = document.createElement('div');
        card.className = 'product-card';
@@ -1547,16 +1478,12 @@
        let safeName = name.replace(/'/g, "\\'");
        let safeDesc = description.replace(/'/g, "\\'").replace(/\n/g, " ");
 
-       // 🌟 سحر التوهج (الضوء): إذا اكو كلمة بحث، نسوي استبدال ذكي للحروف بـ لون فسفوري مضيء
        let displayName = name;
        let displayDesc = description;
        
        if (query !== "") {
-         // حماية الرموز الخاصة بالبحث لمنع أي كراش برميجي
          let escapedQuery = query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
          let regex = new RegExp("(" + escapedQuery + ")", "gi");
-         
-         // تصميم الـ Span يعطي خلفية صفراء دافئة وتأثير ضوء خفيف حول الحروف المكتوبة
          let highlightSpan = "<span style='background: #ffe082; box-shadow: 0 0 8px #ffe082; border-radius: 4px; padding: 0 2px; color: #114232; font-weight: bold;'>$1</span>";
          
          displayName = name.replace(regex, highlightSpan);
@@ -1567,7 +1494,6 @@
          ? `<img class="product-img" src="${imgUrl}" alt="${name}" style="cursor: zoom-in;" onclick="zoomImage('${imgUrl}')" onerror="handleImgError(this)">`
          : `<div class="product-img-fallback">🌿</div>`;
 
-       // عرّفنا الـ displayName والـ displayDesc بداخل الخلايا بدل النصوص الجامدة علمود يظهر الضوء
        card.innerHTML = `
          ${imageSection}
          <div class="product-info">
@@ -1600,24 +1526,19 @@
      });
    }
    
-   // إخفاء اللودر فوراً وإظهار الشبكة
    if (loadingDiv) loadingDiv.style.display = 'none';
    container.style.display = 'grid';
 }
     
-   // 🌟 دالة الأقسام الذكية المحدثة المتوافقة مع القائمة المنسدلة الجديدة
 function filterCategory(category) {
   currentCategory = category; 
 
-  // تصفير خانة البحث فوراً عند اختيار قسم جديد علمود ما تتداخل التصفية
   const searchInput = document.getElementById("product-search");
   if (searchInput) searchInput.value = "";
 
-  // مزامنة وتحديث قيمة القائمة المنسدلة في حال تم استدعاء الدالة تلقائياً عند أول تحميل للموقع
   const selectElement = document.getElementById("category-select");
   if (selectElement) selectElement.value = category;
 
-  // 🚨 قفل الأمان: إذا المنتجات لسه كاعد تلوّد من غوغل، رجّع اللودر واطلع فوراً بدون خربطة
   if (!allProducts || allProducts.length === 0) {
     const loadingDiv = document.getElementById('loading');
     const container = document.getElementById('products-container');
@@ -1629,7 +1550,6 @@ function filterCategory(category) {
     return; 
   }
 
-  // فرز المنتجات بناءً على الخيار المفتوح
   let filtered = [];
   if (category === 'الكل') {
     filtered = allProducts;
@@ -1639,15 +1559,11 @@ function filterCategory(category) {
   renderGrid(filtered);
 }
     
-
-// 🔍 دالة البحث الذكي الشامل: تبحث في كل المنتجات وتلغي تقييد الأقسام تلقائياً
 function searchProducts() {
-  // ⛔ شرط الأمان: إذا لسه كاعد يحمل البيانات، لتشغل البحث علمود ما يخرب اللودر
   if (!allProducts || allProducts.length === 0) return;
 
   let query = document.getElementById("product-search").value.trim().toLowerCase();
   
-  // 🌟 الحركة الذكية: إذا بدأ يكتب، صفر القسم ورجعه للكل علمود يظهر نتائج المتجر بالكامل
   if (query !== "") {
     currentCategory = 'الكل';
     const selectElement = document.getElementById("category-select");
@@ -1658,7 +1574,6 @@ function searchProducts() {
     let nameMatch = p.name ? p.name.toLowerCase().includes(query) : false;
     let descMatch = p.description ? p.description.toLowerCase().includes(query) : false;
     
-    // البحث هسة صار حر ويقرأ كل المنتجات بدون تقييد
     return nameMatch || descMatch;
   });
   
@@ -1815,9 +1730,8 @@ function searchProducts() {
         listContainer.appendChild(itemRow);
       });
 
-     // 🌟 الحفظ الديناميكي المخصص للعضو بداخل السلة
     let currentMember = (typeof window.memberKey !== 'undefined') ? window.memberKey : 'main';
-     localStorage.setItem('dxn_cart_' + currentMember, JSON.stringify(cart));
+    localStorage.setItem('dxn_cart_' + currentMember, JSON.stringify(cart));
 
    if (updateTimer && cart.length > 0) {
     const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000;
@@ -1850,7 +1764,6 @@ function searchProducts() {
       }
     }
 
-    // 🟢 دالة إرسال الطلبات المباشرة المحدثة بـ نافذة التأكيد والتحميل المشفرة المخصصة بالمنتصف
     function sendOrderToTelegramBot() {
   var name = document.getElementById("cust-name").value.trim();
   var phone = document.getElementById("cust-phone").value.trim();
@@ -1868,22 +1781,16 @@ function searchProducts() {
     return;
   }
 
-  // 1️⃣ ظهور زر التأكيد المخصص بالمنتصف
   showCustomConfirm("هل أنت متأكد من الطلب؟", function() {
-    
-    // 2️⃣ إظهار شاشة التحميل الدوارة فوراً بعد التأكيد
     showLoading(true);
 
-    // لقط العضو الحالي لضمان عزل الحفظ التلقائي بالمتصفح
     let currentMember = (typeof window.memberKey !== 'undefined') ? window.memberKey : 'main';
 
-    // ✨ تصحيح الأمان: الحفظ مؤقتاً لكل عضو بوحده علمود ما تتداخل البيانات بالمتصفح
     localStorage.setItem("saved_cust_name_" + currentMember, name);
     localStorage.setItem("saved_cust_phone_" + currentMember, phone);
     localStorage.setItem("saved_cust_governorate_" + currentMember, governorate);
     localStorage.setItem("saved_cust_address_" + currentMember, address);
 
-    // 📄 صياغة النص بـ Markdown للتليجرام (نفس كودك بالظبط)
     var fullMessage = "🚨 *طلب شراء جديد من متجر الأعضاء* 🚨\n\n" +
                       "👤 *الزبون:* " + name + "\n" +
                       "📞 *الهاتف:* " + phone + "\n" +
@@ -1894,15 +1801,13 @@ function searchProducts() {
 
     var totalSummaryPrice = 0;
     var totalSummaryPV = 0;
-    var productsTextForSheet = ""; // ✨ إضافة ذكية: لتجميع المنتجات بخانة واحدة للإكسل الجديد
+    var productsTextForSheet = ""; 
 
     cart.forEach((item, index) => {
       var itemTotal = item.price * item.quantity;
       totalSummaryPrice += itemTotal;
       totalSummaryPV += (item.pv || 0) * item.quantity;
       fullMessage += (index + 1) + ". " + item.name + " (العدد: " + item.quantity + ") -> " + itemTotal.toLocaleString() + " د.ع\n";
-      
-      // بناء نص المنتجات المرتب للجدول
       productsTextForSheet += item.name + " (العدد: " + item.quantity + ") | ";
     });
 
@@ -1917,13 +1822,9 @@ function searchProducts() {
 
     fullMessage += "\n\n💰 *الحساب الإجمالي:* " + totalSummaryPrice.toLocaleString() + " د.ع";
 
-    // 🌐 الرابط الأول: غوغل سكربت الخاص بالتليجرام (رابطك المأمن الحالي نفسه)
     var telegramWebAppUrl = "https://script.google.com/macros/s/AKfycby70ldBIzljMDCKuhSvKjbkM6iXaeXshA9j3zgVVaxJDV8sLAXD_dU9bCWlMe4adeIy/exec";
-
-    // 🌐 الرابط الثاني: ⚠️ حط هنا رابط الويب أب الجديد اللّي راح تطلعه من شيت الطلبيات الجديد
     var ordersWebAppUrl = "https://script.google.com/macros/s/AKfycbxlaH6qJJ4YTsjxAa9JXMdTdjJAZbNoTGDaXXQ-WKQtLno-2ViSnpYoeIblhX6c5bGlow/exec";
 
-    // ✨ الإرسال المزدوج المتوازي للتليجرام وللإكسل بنفس اللحظة بأعلى كفاءة
     var telegramPromise = fetch(telegramWebAppUrl, {
       method: "POST",
       mode: "no-cors",
@@ -1947,13 +1848,9 @@ function searchProducts() {
       })
     });
 
-    // الانتظار حتى اكتمال العمليتين بنجاح
     Promise.all([telegramPromise, excelPromise])
       .then(() => {
-        // إخفاء شاشة التحميل فور اكتمال الإرسال
         showLoading(false);
-        
-        // إظهار إشعار النجاح بمنتصف الشاشة (نفس كودك بالظبط)
         showCustomAlert("تم تأكيد واستلام طلبك بنجاح.", function() {
           cart = []; 
           updateCartUI();
@@ -1968,14 +1865,11 @@ function searchProducts() {
   });
 }
 
-    // 🟢 دالة نسخ كود التخفيض المحدثة والمحمية ضد القيود البرمجية داخل الـ WebView
     function copyMemberID() {
       var idNum = document.getElementById("member-id-number").innerText;
-
       var btn = document.querySelector(".copy-card-btn");
       var originalText = btn.innerHTML;
 
-      // دالة تغيير حالة وشكل الزر عند نجاح العملية المضمونة
       function successState() {
         btn.innerHTML = "تم النسخ بنجاح! ✓";
         btn.style.background = "#114232"; 
@@ -1997,7 +1891,6 @@ function searchProducts() {
       }
     }
 
-    // الدالة الاحتياطية لنسخ كود التخفيض لضمان عمله داخل أي تطبيق موبايل
     function fallbackCopyMemberID(textToCopy, successCallback) {
       var textArea = document.createElement("textarea");
       textArea.value = textToCopy;
