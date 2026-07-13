@@ -1011,6 +1011,12 @@
     </button>
   </header>
 
+  <!-- 🔍 حقل البحث الجديد المنسق بألوان الهوية البصرية لمتجرك -->
+  <div style="max-width: 420px; margin: 0 auto 20px auto; padding: 0 15px; direction: rtl;">
+    <input type="text" id="product-search" oninput="searchProducts()" placeholder="🔍 ابحث عن اسم المنتج أو الفائدة..." 
+           style="width: 100%; padding: 12px 20px; border: 2px solid #114232; border-radius: 50px; font-size: 15px; box-sizing: border-box; text-align: right; font-weight: 600; color: #114232; background-color: #ffffff; box-shadow: 0 4px 12px rgba(17, 66, 50, 0.04); outline: none;">
+  </div>
+
   <div class="categories">
     <button class="btn-category active" onclick="filterCategory('الكل', this)">الكل</button>
     <button class="btn-category" onclick="filterCategory('مكملات غذائية', this)">مكملات غذائية</button>
@@ -1561,11 +1567,33 @@
        container.style.display = 'grid';
     }
     
-    function filterCategory(category, buttonElement) {
-  // 🌟 حفظ القسم اللّي انضغط بداخل المتغير العالمي فوراً
+   // 🔍 دالة البحث الذكي بالوقت الفعلي بداخل المنتجات
+function searchProducts() {
+  // لقط الكلمة المكتوبة وتحويلها لأحرف صغيرة علمود دقة البحث
+  let query = document.getElementById("product-search").value.trim().toLowerCase();
+  
+  let filtered = allProducts.filter(p => {
+    let nameMatch = p.name ? p.name.toLowerCase().includes(query) : false;
+    let descMatch = p.description ? p.description.toLowerCase().includes(query) : false;
+    
+    // 🌟 ذكاء اصطناعي: البحث يشتغل بداخل القسم اللّي واكف عليه الزبون حالياً (مكملات، أغذية...)
+    let categoryMatch = (currentCategory === 'الكل') || (p.category && String(p.category).trim() === currentCategory.trim());
+    
+    return categoryMatch && (nameMatch || descMatch);
+  });
+  
+  // إعادة فرش الشبكة بالمنتجات المفلترة فوراً
+  renderGrid(filtered);
+}
+
+// 🌟 تحديث دالة الأقسام السابقة لتصفير خانة البحث عند التنقل بذكاء
+function filterCategory(category, buttonElement) {
   currentCategory = category; 
 
-  // تحديث كلاسات الأزرار والتحديد فقط إذا تم الضغط من قبل مستخدم
+  // تصفير خانة البحث فوراً عند النقر على قسم جديد علمود ما تتداخل التصفية
+  const searchInput = document.getElementById("product-search");
+  if (searchInput) searchInput.value = "";
+
   if (buttonElement) {
     const buttons = document.querySelectorAll('.btn-category');
     buttons.forEach(btn => btn.classList.remove('active'));
