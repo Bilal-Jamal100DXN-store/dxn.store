@@ -1470,7 +1470,7 @@
 
        let name = product.name || 'منتج بدون اسم';
        let rawPrice = Number(product.price);
-       let formattedPrice = !isNaN(rawPrice) ? rawPrice.toLocaleString() : 'غير محدد';
+       let formattedPrice = !isNaN(rawPrice) ? rawPrice.toLocaleString('en-US') : 'غير محدد';
        let description = product.description || ''; 
        let imgUrl = (product.img && product.img.trim().startsWith('http')) ? product.img.trim() : '';
        let productPV = Number(product.pv || product.points || 0);
@@ -1714,7 +1714,7 @@ function searchProducts() {
         itemRow.innerHTML = `
           <div style="text-align:right; flex-grow: 1;">
             <strong style="color:#114232; font-size:15px; font-weight:600;">${item.name}</strong> <br>
-            <span style="font-size:13px; color:#777;">${item.price.toLocaleString()} د.ع</span>
+            <span style="font-size:13px; color:#777;">${item.price.toLocaleString('en-US')} د.ع</span>
           </div>
           
           <div style="display: flex; align-items: center; gap: 8px; margin-left: 12px; margin-right: 12px; direction: ltr;">
@@ -1742,7 +1742,7 @@ function searchProducts() {
       if (topLeftCartCount) topLeftCartCount.innerText = totalItems;
 
       pvAlertContainer.style.display = "none";
-      totalContainer.innerText = total.toLocaleString();
+      totalContainer.innerText = total.toLocaleString('en-US');
     }
 
     function clearCart() {
@@ -1807,7 +1807,7 @@ function searchProducts() {
       var itemTotal = item.price * item.quantity;
       totalSummaryPrice += itemTotal;
       totalSummaryPV += (item.pv || 0) * item.quantity;
-      fullMessage += (index + 1) + ". " + item.name + " (العدد: " + item.quantity + ") -> " + itemTotal.toLocaleString() + " د.ع\n";
+      fullMessage += (index + 1) + ". " + item.name + " (العدد: " + item.quantity + ") -> " + itemTotal.toLocaleString('en-US') + " د.ع\n";
       productsTextForSheet += item.name + " (العدد: " + item.quantity + ") | ";
     });
 
@@ -1820,7 +1820,7 @@ function searchProducts() {
       deliveryStatus = "يحدد حسب العنوان";
     }
 
-    fullMessage += "\n\n💰 *الحساب الإجمالي:* " + totalSummaryPrice.toLocaleString() + " د.ع";
+    fullMessage += "\n\n💰 *الحساب الإجمالي:* " + totalSummaryPrice.toLocaleString('en-US') + " د.ع";
 
     var telegramWebAppUrl = "https://script.google.com/macros/s/AKfycby70ldBIzljMDCKuhSvKjbkM6iXaeXshA9j3zgVVaxJDV8sLAXD_dU9bCWlMe4adeIy/exec";
     var ordersWebAppUrl = "https://script.google.com/macros/s/AKfycbxlaH6qJJ4YTsjxAa9JXMdTdjJAZbNoTGDaXXQ-WKQtLno-2ViSnpYoeIblhX6c5bGlow/exec";
